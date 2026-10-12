@@ -139,14 +139,14 @@
     .chart-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; align-items:stretch; }
     .chart-card { padding:17px 18px 14px; min-width:0; position:relative; overflow:hidden; opacity:.35; transform:translateY(8px); transition:opacity .62s ease,transform .62s ease,box-shadow .25s ease,border-color .25s ease; scroll-margin-top:92px; }
     .chart-card.is-visible { opacity:1; transform:translateY(0); }
-    .chart-card.primary {
+   /* .chart-card.primary {
       grid-column: 1 / -1;
       border: 1px solid rgba(0,113,206,.45);
       box-shadow: 0 11px 34px rgba(0,113,206,.09), var(--shadow);
     }
     .chart-card.primary .chart-canvas {
       height: 340px;
-    }
+    } */
     .chart-card.has-inflection { border-left:3px solid #e5a000; }
     .chart-meta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:7px; margin-bottom:8px; }
     .chart-tags { display:flex; align-items:center; flex-wrap:wrap; gap:6px; }

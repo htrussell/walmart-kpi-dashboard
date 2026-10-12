@@ -67,35 +67,28 @@
     a { color: var(--blue); }
     .shell { width: min(1540px, calc(100% - 40px)); margin: 0 auto; }
     .hero {
-      position: relative;
       overflow: hidden;
-      padding: 30px 0 26px;
+      padding: 18px 0 19px;
       color: #fff;
-      background: linear-gradient(118deg, #041e42 0%, #004c91 54%, #0071ce 100%);
-      border-bottom: 4px solid var(--yellow);
-      box-shadow: 0 12px 34px rgba(4,30,66,.21);
-      isolation: isolate;
+      background: linear-gradient(115deg, #041e42 0%, #064b88 52%, #0071ce 100%);
+      border-bottom: 2px solid var(--yellow);
+      box-shadow: 0 3px 12px rgba(4,30,66,.1);
     }
-    .hero::before, .hero::after {
-      content: ""; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none;
-      border: 1px solid rgba(255,255,255,.17); background: rgba(255,255,255,.055);
-    }
-    .hero::before { width: 380px; height: 380px; right: 5%; top: -240px; }
-    .hero::after { width: 250px; height: 250px; right: 20%; bottom: -220px; }
-    .hero-top { display:flex; align-items:flex-start; justify-content:space-between; gap:28px; }
-    .brand { display:flex; align-items:flex-start; gap:14px; min-width:0; }
-    .spark { display:grid; place-items:center; flex:0 0 48px; width:48px; height:48px; border-radius:14px; background:var(--yellow); color:var(--navy); font-size:27px; font-weight:900; box-shadow:0 5px 18px rgba(0,0,0,.2); }
-    h1 { font-size:clamp(23px,2.1vw,32px); letter-spacing:-.04em; line-height:1.14; margin:0; max-width:860px; }
-    .eyebrow { color:#b9d9f8; text-transform:uppercase; letter-spacing:.13em; font-size:10px; font-weight:800; margin-bottom:8px; }
-    .subtitle { margin-top:8px; color:#d9e8f8; font-size:13px; }
-    .hero-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:8px; }
-    .control-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.11); padding:9px 12px; border-radius:999px; cursor:pointer; white-space:nowrap; backdrop-filter:blur(12px); transition:background .16s ease, border-color .16s ease; }
-    .control-btn:hover { background:rgba(255,255,255,.2); }
-    .thesis { margin-top:23px; padding:14px 17px; border:1px solid rgba(255,255,255,.19); border-left:4px solid var(--yellow); border-radius:0 14px 14px 0; background:rgba(255,255,255,.105); backdrop-filter:blur(14px); line-height:1.55; color:#f1f6fd; }
-    .thesis strong { display:block; color:var(--yellow); font-size:10px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:3px; }
-    .hero-stats { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-    .hero-stat { font-size:11px; font-weight:700; padding:5px 10px; color:#eaf4ff; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.075); }
-    .hero-stat b { color:var(--yellow); }
+    .hero-utility { display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:36px; }
+    .eyebrow { color:rgba(217,232,248,.78); text-transform:uppercase; letter-spacing:.14em; font-size:9px; font-weight:750; }
+    .hero-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:7px; }
+    .control-btn { min-height:35px; display:inline-flex; align-items:center; justify-content:center; gap:7px; border:1px solid rgba(255,255,255,.2); color:rgba(255,255,255,.96); background:rgba(15,91,151,.34); padding:6px 10px; border-radius:9px; font-size:11px; cursor:pointer; white-space:nowrap; transition:background .16s ease, border-color .16s ease; }
+    .control-btn:hover { background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.38); }
+    .hero-content { display:grid; grid-template-columns:48% 52%; align-items:center; margin-top:12px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:0; padding-right:26px; }
+    .spark { display:grid; place-items:center; flex:0 0 42px; width:42px; height:42px; border-radius:12px; background:var(--yellow); color:var(--navy); font-size:24px; font-weight:900; }
+    h1 { font-size:clamp(34px,2.8vw,38px); letter-spacing:-.04em; line-height:1.02; margin:0; }
+    .subtitle { margin-top:8px; color:rgba(217,232,248,.78); font-size:11px; }
+    .hero-details { border-left:1px solid rgba(255,255,255,.18); padding:3px 0 3px 34px; }
+    .thesis-label { display:block; color:var(--yellow); font-size:9px; letter-spacing:.14em; font-weight:750; text-transform:uppercase; }
+    .thesis { max-width:650px; margin:5px 0 0; color:#f1f6fd; font-size:17px; line-height:1.45; }
+    .hero-stats { margin-top:12px; color:rgba(217,232,248,.74); font-size:10px; font-weight:600; letter-spacing:.025em; }
+    .hero-stats b { color:#ffda70; font-weight:750; }
     main { padding:22px 0 42px; }
     .toolbar { display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:17px; }
     .tabs { display:flex; flex-wrap:wrap; gap:6px; padding:5px; border:1px solid var(--border); border-radius:15px; background:var(--surface); box-shadow:var(--shadow); backdrop-filter:blur(16px); }
@@ -226,21 +219,30 @@
     @media (min-width:1500px) { .chart-canvas { height:275px; } }
     @media (max-width:1050px) {
       .shell { width:min(100% - 28px,1540px); }
-      .hero-top { flex-direction:column; }
-      .hero-actions { justify-content:flex-start; }
       .source-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .narrative-grid { grid-template-columns:1fr; }
       .team-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .team-card { min-height:220px; }
       .kpi-strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
     }
+    @media (max-width:900px) {
+      .hero-content { grid-template-columns:1fr; gap:17px; }
+      .hero-details { border-left:0; padding:0; }
+    }
     @media (max-width:720px) {
       .shell { width:calc(100% - 22px); }
-      .hero { padding:22px 0; }
-      .spark { flex-basis:39px; width:39px; height:39px; font-size:22px; }
-      .brand { gap:10px; }
-      .hero-actions { width:100%; }
-      .control-btn { font-size:11px; padding:8px 10px; }
+      .hero { padding:17px 0 15px; }
+      .hero-utility { align-items:flex-start; flex-direction:column-reverse; gap:9px; }
+      .hero-actions { width:100%; justify-content:flex-start; gap:5px; }
+      .control-btn { min-height:34px; font-size:10px; padding:5px 8px; }
+      .hero-content { grid-template-columns:1fr; gap:18px; margin-top:17px; }
+      .brand { gap:10px; padding-right:0; }
+      .spark { flex-basis:38px; width:38px; height:38px; font-size:21px; }
+      h1 { font-size:clamp(29px,7vw,36px); }
+      .subtitle { font-size:10px; }
+      .hero-details { border-left:0; padding:0; }
+      .thesis { font-size:16px; }
+      .hero-stats { margin-top:10px; line-height:1.6; }
       .tabs { width:100%; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
       .tab { padding:9px 8px; }
       .chart-grid, .note-grid, .team-grid { grid-template-columns:1fr; }
@@ -381,30 +383,27 @@
   <a class="skip-link" href="#mainContent">Skip to dashboard content</a>
   <header class="hero">
     <div class="shell">
-      <div class="hero-top">
-        <div class="brand">
-          <div class="spark" aria-hidden="true">✻</div>
-          <div>
-            <div class="eyebrow">Group 9 · Week 7 · Live KPI Dashboard</div>
-            <h1>Walmart Digital Transformation</h1>
-            <div class="subtitle">Walmart Inc. (WMT) · Public-disclosure analysis · FY2023–FY2026</div>
-          </div>
-        </div>
+      <div class="hero-utility">
+        <div class="eyebrow">Group 9 · Week 7 · Live KPI Dashboard</div>
         <div class="hero-actions" aria-label="Dashboard controls">
           <button class="control-btn" type="button" id="themeToggle" aria-pressed="false" title="Switch between light and dark themes"><span aria-hidden="true">◐</span><span id="themeLabel">Dark mode</span></button>
           <button class="control-btn" type="button" id="showAllToggle" aria-pressed="false"><span aria-hidden="true">▤</span><span id="showAllLabel">Show all sections</span></button>
           <button class="control-btn print-btn" type="button" id="printToggle" title="Print or save the full dashboard as PDF"><span aria-hidden="true">↗</span><span>Print / Save PDF</span></button>
         </div>
       </div>
-      <div class="thesis">
-        <strong>Transformation thesis</strong>
-        Walmart is turning its U.S. store base into a digital fulfillment and retail media network, shifting value from low-margin store sales toward higher-margin eCommerce, advertising, and membership income.
-      </div>
-      <div class="hero-stats" aria-label="Dashboard at a glance">
-        <span class="hero-stat"><b>8</b> diagnostic KPIs</span>
-        <span class="hero-stat"><b>3</b> leading · <b>5</b> lagging</span>
-        <span class="hero-stat"><b>3</b> annotated inflection points</span>
-        <span class="hero-stat">FY2023 baseline → FY2026 latest</span>
+      <div class="hero-content">
+        <div class="brand">
+          <div class="spark" aria-hidden="true">✻</div>
+          <div>
+            <h1>Walmart Digital<br>Transformation</h1>
+            <div class="subtitle">Walmart Inc. (WMT) · Public-disclosure analysis · FY2023–FY2026</div>
+          </div>
+        </div>
+        <div class="hero-details">
+          <strong class="thesis-label">Transformation thesis</strong>
+          <p class="thesis">Walmart is turning its store network into a digital fulfillment and retail-media engine, supported by automation, advertising, and membership growth.</p>
+          <div class="hero-stats" aria-label="Dashboard at a glance"><b>8</b> KPIs · <b>3</b> leading / <b>5</b> lagging · <b>3</b> inflection points</div>
+        </div>
       </div>
     </div>
   </header>

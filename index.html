@@ -15,11 +15,10 @@
       --navy: #041e42;
       --yellow: #ffc220;
       --teal: #148a5b;
-      --purple: #7065f0;
-      --bg: #f4f6f8;
-      --surface: rgba(255,255,255,.9);
+      --bg: #f7f9fc;
+      --surface: rgba(255,255,255,.94);
       --surface-strong: #fff;
-      --surface-muted: #f1f3f5;
+      --surface-muted: #f2f5f9;
       --text: #14263d;
       --muted: #667386;
       --border: rgba(52,82,116,.16);
@@ -80,10 +79,9 @@
     .hero::before, .hero::after {
       content: ""; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none;
       border: 1px solid rgba(255,255,255,.17); background: rgba(255,255,255,.055);
-      animation: float-glow 11s ease-in-out infinite alternate;
     }
     .hero::before { width: 380px; height: 380px; right: 5%; top: -240px; }
-    .hero::after { width: 250px; height: 250px; right: 20%; bottom: -220px; animation-delay: -4s; }
+    .hero::after { width: 250px; height: 250px; right: 20%; bottom: -220px; }
     .hero-top { display:flex; align-items:flex-start; justify-content:space-between; gap:28px; }
     .brand { display:flex; align-items:flex-start; gap:14px; min-width:0; }
     .spark { display:grid; place-items:center; flex:0 0 48px; width:48px; height:48px; border-radius:14px; background:var(--yellow); color:var(--navy); font-size:27px; font-weight:900; box-shadow:0 5px 18px rgba(0,0,0,.2); }
@@ -91,8 +89,8 @@
     .eyebrow { color:#b9d9f8; text-transform:uppercase; letter-spacing:.13em; font-size:10px; font-weight:800; margin-bottom:8px; }
     .subtitle { margin-top:8px; color:#d9e8f8; font-size:13px; }
     .hero-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:8px; }
-    .control-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.11); padding:9px 12px; border-radius:999px; cursor:pointer; white-space:nowrap; backdrop-filter:blur(12px); transition:transform .16s ease, background .16s ease, border-color .16s ease; }
-    .control-btn:hover { background:rgba(255,255,255,.2); transform:translateY(-1px); }
+    .control-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.11); padding:9px 12px; border-radius:999px; cursor:pointer; white-space:nowrap; backdrop-filter:blur(12px); transition:background .16s ease, border-color .16s ease; }
+    .control-btn:hover { background:rgba(255,255,255,.2); }
     .thesis { margin-top:23px; padding:14px 17px; border:1px solid rgba(255,255,255,.19); border-left:4px solid var(--yellow); border-radius:0 14px 14px 0; background:rgba(255,255,255,.105); backdrop-filter:blur(14px); line-height:1.55; color:#f1f6fd; }
     .thesis strong { display:block; color:var(--yellow); font-size:10px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:3px; }
     .hero-stats { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
@@ -101,20 +99,17 @@
     main { padding:22px 0 42px; }
     .toolbar { display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:17px; }
     .tabs { display:flex; flex-wrap:wrap; gap:6px; padding:5px; border:1px solid var(--border); border-radius:15px; background:var(--surface); box-shadow:var(--shadow); backdrop-filter:blur(16px); }
-    .tab { appearance:none; border:0; background:transparent; color:var(--muted); font-weight:750; font-size:12px; cursor:pointer; padding:10px 14px; border-radius:10px; transition:background .18s ease,color .18s ease,transform .18s ease; }
+    .tab { appearance:none; border:0; background:transparent; color:var(--muted); font-weight:750; font-size:12px; cursor:pointer; padding:10px 14px; border-radius:10px; transition:background .18s ease,color .18s ease; }
     .tab:hover { color:var(--text); }
     .tab[aria-selected="true"] { color:#fff; background:linear-gradient(115deg,var(--blue-dark),var(--blue)); box-shadow:0 5px 15px rgba(0,113,206,.22); }
-    .view-hint { color:var(--muted); font-size:11px; }
     .panel[hidden] { display:none !important; }
-    .panel { animation: panel-in .32s ease both; }
-    .section-head { display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin:22px 0 12px; }
+    .panel { animation:none; }
+    .section-head { margin:22px 0 12px; }
     .section-head:first-child { margin-top:0; }
     .section-head h2 { margin:0; color:var(--text); font-size:18px; letter-spacing:-.025em; line-height:1.25; }
-    .section-head p { color:var(--muted); margin:4px 0 0; font-size:11px; }
-    .micro-label { color:var(--muted); font-size:10px; text-align:right; }
     .glass { background:var(--surface); border:1px solid var(--border); border-radius:var(--card-radius); box-shadow:var(--shadow); backdrop-filter:blur(18px); }
     .kpi-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
-    .kpi-card { position:relative; overflow:hidden; padding:14px 15px 12px; min-height:120px; animation:rise-in .45s ease both; }
+    .kpi-card { position:relative; overflow:hidden; padding:14px 15px 12px; min-height:120px; }
     .kpi-card::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--blue); }
     .kpi-card.leading::before { background:var(--teal); }
     .kpi-card.inflection { background:linear-gradient(135deg,var(--amber-bg),var(--surface)); }
@@ -129,16 +124,17 @@
     .kpi-values { display:flex; align-items:baseline; justify-content:space-between; gap:6px; }
     .kpi-current { font-size:23px; letter-spacing:-.04em; font-weight:850; line-height:1.05; }
     .kpi-delta { color:var(--positive-text); background:var(--positive-bg); border-radius:7px; padding:3px 6px; font-size:10px; font-weight:800; text-align:right; }
+    .kpi-card.lagging .kpi-delta:not(.neutral):not(.caveat) { color:var(--blue); background:var(--blue-tint); }
+    html[data-theme="dark"] .kpi-card.lagging .kpi-delta:not(.neutral):not(.caveat) { color:#8ccfff; }
     .kpi-base { margin-top:9px; padding-top:7px; border-top:1px dashed var(--border); display:flex; justify-content:space-between; gap:8px; color:var(--muted); font-size:10px; }
     .kpi-delta.neutral { color:var(--text); background:var(--surface-muted); border:1px solid var(--border); }
     .kpi-delta.caveat { color:var(--amber-text); background:var(--amber-bg); border:1px solid rgba(229,160,0,.25); }
     .insight-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:11px; margin:0 0 22px; }
-    .insight-card { --insight-accent:var(--blue); position:relative; overflow:hidden; padding:16px 16px 14px; min-width:0; min-height:184px; border-top:3px solid var(--insight-accent); transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+    .insight-card { --insight-accent:var(--blue); position:relative; overflow:hidden; padding:16px 16px 14px; min-width:0; min-height:184px; border-top:3px solid var(--insight-accent); transition:border-color .18s ease,box-shadow .18s ease; }
     .insight-card::after { content:""; position:absolute; width:116px; height:116px; right:-48px; top:-48px; border-radius:50%; background:var(--insight-accent); opacity:.075; pointer-events:none; }
-    .insight-card:hover { transform:translateY(-2px); box-shadow:0 15px 34px rgba(15,38,67,.11); }
+    .insight-card:hover { box-shadow:0 15px 34px rgba(15,38,67,.11); }
     .insight-card.teal { --insight-accent:var(--teal); }
     .insight-card.amber { --insight-accent:#d89000; }
-    .insight-card.purple { --insight-accent:var(--purple); }
     .insight-kicker { display:flex; align-items:center; gap:7px; color:var(--muted); text-transform:uppercase; letter-spacing:.09em; font-weight:850; font-size:9px; }
     .insight-index { display:inline-grid; place-items:center; width:22px; height:22px; border:1px solid var(--border); color:var(--insight-accent); border-radius:7px; font-size:10px; letter-spacing:0; background:var(--surface-muted); }
     .insight-value { margin-top:12px; color:var(--text); font-size:clamp(23px,2vw,31px); font-weight:880; letter-spacing:-.045em; line-height:1; font-variant-numeric:tabular-nums; }
@@ -146,8 +142,8 @@
     .insight-copy { margin:7px 0 0; color:var(--muted); font-size:10px; line-height:1.5; }
     .insight-copy strong { color:var(--text); }
     .chart-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; align-items:stretch; }
-    .chart-card { padding:17px 18px 14px; min-width:0; position:relative; overflow:hidden; animation:rise-in .5s ease both; }
-    .chart-card:nth-child(2n) { animation-delay:.04s; }
+    .chart-card { padding:17px 18px 14px; min-width:0; position:relative; overflow:hidden; opacity:.35; transform:translateY(8px); transition:opacity .62s ease,transform .62s ease,box-shadow .25s ease,border-color .25s ease; scroll-margin-top:92px; }
+    .chart-card.is-visible { opacity:1; transform:translateY(0); }
     .chart-card.primary {
       grid-column: 1 / -1;
       border: 1px solid rgba(0,113,206,.45);
@@ -170,7 +166,6 @@
     .data-card { overflow:hidden; }
     .table-topline { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:16px 18px; border-bottom:1px solid var(--border); flex-wrap:wrap; }
     .table-topline h3 { margin:0; font-size:14px; }
-    .table-topline p { margin:3px 0 0; color:var(--muted); font-size:10px; }
     .table-wrap { width:100%; overflow:auto; }
     table { border-collapse:collapse; width:100%; font-size:11px; }
     thead { background:linear-gradient(110deg,var(--navy),var(--blue-dark)); color:#fff; }
@@ -196,10 +191,10 @@
     .rationale-list li.leading-item { border-left-color:var(--teal); }
     .rationale-list strong { font-size:11px; }
     .team-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; align-items:stretch; }
-    .team-card { padding:19px; position:relative; overflow:hidden; display:flex; flex-direction:column; min-width:0; min-height:252px; transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
+    .team-card { padding:19px; position:relative; overflow:hidden; display:flex; flex-direction:column; min-width:0; min-height:252px; transition:border-color .2s ease,box-shadow .2s ease; }
     .team-card::before { content:""; position:absolute; inset:0 auto 0 0; width:3px; background:linear-gradient(180deg,var(--blue),var(--teal)); opacity:.95; }
-    .team-card.member-c::before { background:linear-gradient(180deg,var(--teal),var(--purple)); }
-    .team-card:hover { transform:translateY(-3px); border-color:rgba(0,113,206,.36); box-shadow:0 16px 34px rgba(15,38,67,.1); }
+    .team-card.member-c::before { background:linear-gradient(180deg,var(--teal),var(--blue)); }
+    .team-card:hover { border-color:rgba(0,113,206,.36); box-shadow:0 16px 34px rgba(15,38,67,.1); }
     .team-card .member { display:inline-flex; align-self:flex-start; align-items:center; border:1px solid var(--border); background:var(--blue-tint); color:var(--blue); border-radius:999px; padding:5px 9px; font-size:9px; letter-spacing:.075em; line-height:1.3; text-transform:uppercase; font-weight:850; }
     .team-card.member-c .member { background:color-mix(in srgb,var(--teal) 10%,transparent); color:var(--teal); }
     .team-card h3 { margin:13px 0 12px; font-size:14px; letter-spacing:-.02em; line-height:1.35; min-height:2.65em; }
@@ -207,16 +202,16 @@
     .team-names { display:grid; gap:6px; margin:0 0 13px; }
     .team-name { display:flex; align-items:center; gap:9px; min-width:0; color:var(--text); font-size:12px; font-weight:800; line-height:1.4; overflow-wrap:anywhere; }
     .team-avatar { width:32px; height:32px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; background:linear-gradient(145deg,rgba(0,113,206,.14),color-mix(in srgb,var(--teal) 14%,transparent)); border:1px solid var(--border); color:var(--blue); font-size:10px; font-weight:900; letter-spacing:.02em; }
-    .team-card.member-c .team-avatar { background:linear-gradient(145deg,color-mix(in srgb,var(--teal) 12%,transparent),rgba(112,101,240,.12)); color:var(--teal); }
+    .team-card.member-c .team-avatar { background:linear-gradient(145deg,color-mix(in srgb,var(--teal) 12%,transparent),rgba(0,113,206,.12)); color:var(--teal); }
     .team-collab-note { display:flex; align-items:flex-start; gap:10px; margin-top:13px; padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:var(--surface-muted); color:var(--muted); font-size:10.5px; line-height:1.6; }
     .team-collab-mark { display:grid; place-items:center; flex:0 0 25px; width:25px; height:25px; margin-top:1px; border-radius:8px; background:color-mix(in srgb,var(--teal) 12%,transparent); color:var(--teal); font-size:13px; font-weight:900; }
     .team-collab-note strong { color:var(--text); }
-    html[data-theme="dark"] .team-card.member-c .member { color:#79e4d7; border-color:rgba(121,228,215,.25); }
-    html[data-theme="dark"] .team-card.member-c .team-avatar { color:#79e4d7; }
+    html[data-theme="dark"] .team-card.member-c .member { color:#6ee7a8; border-color:rgba(110,231,168,.25); }
+    html[data-theme="dark"] .team-card.member-c .team-avatar { color:#6ee7a8; }
     @media (max-width:1250px) and (min-width:1051px) { .team-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .team-card { min-height:220px; } }
     .source-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding:15px; }
-    .source-item { padding:12px; border:1px solid var(--border); background:var(--surface-muted); border-radius:11px; min-width:0; transition:transform .18s ease,border-color .18s ease; }
-    .source-item:hover { transform:translateY(-2px); border-color:rgba(0,113,206,.4); }
+    .source-item { padding:12px; border:1px solid var(--border); background:var(--surface-muted); border-radius:11px; min-width:0; transition:border-color .18s ease; }
+    .source-item:hover { border-color:rgba(0,113,206,.4); }
     .source-item .source-id { color:var(--yellow); background:var(--navy); font-size:10px; font-weight:900; padding:3px 6px; border-radius:5px; }
     .source-item h4 { margin:9px 0 4px; font-size:11px; line-height:1.4; }
     .source-item p { margin:0; color:var(--muted); font-size:10px; line-height:1.45; }
@@ -228,9 +223,6 @@
     .all-mode .panel { margin-bottom:25px; }
     .notice { display:none; border-radius:12px; padding:12px 14px; margin:10px 0; border:1px solid rgba(220,38,38,.25); color:var(--text); background:rgba(220,38,38,.08); }
     .notice.visible { display:block; }
-    @keyframes panel-in { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes rise-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes float-glow { from { transform:translate3d(0,0,0) scale(1); } to { transform:translate3d(12px,-11px,0) scale(1.04); } }
     @media (min-width:1500px) { .chart-canvas { height:275px; } }
     @media (max-width:1050px) {
       .shell { width:min(100% - 28px,1540px); }
@@ -257,8 +249,6 @@
       .chart-canvas { height:235px; }
       .kpi-strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .source-grid { grid-template-columns:1fr; }
-      .section-head { align-items:flex-start; flex-direction:column; }
-      .micro-label { text-align:left; }
       .narrative-card { padding:16px; }
       .kpi-current { font-size:20px; }
     }
@@ -280,40 +270,33 @@
     .toolbar { position:sticky; top:0; z-index:40; padding:9px 0; background:color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:border-color .2s ease, box-shadow .2s ease; }
     .toolbar.is-scrolled { border-bottom-color:var(--border); box-shadow:0 9px 24px rgba(10,30,60,.06); }
     .tabs { flex:0 1 auto; }
-    .view-hint { max-width:330px; text-align:right; }
-    .chart-explorer { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:13px 15px; margin:0 0 13px; }
-    .explorer-intro { display:flex; flex-direction:column; gap:2px; min-width:180px; }
-    .explorer-overline { color:var(--blue); font-size:9px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
-    .explorer-intro strong { font-size:12px; letter-spacing:-.015em; }
-    .explorer-intro span:last-child { color:var(--muted); font-size:10px; }
-    .explorer-controls { display:flex; justify-content:flex-end; align-items:center; gap:8px; flex-wrap:wrap; }
-    .search-field { display:flex; align-items:center; gap:8px; padding:0 10px; min-width:205px; height:36px; border:1px solid var(--border); border-radius:10px; background:var(--surface-strong); }
-    .search-field svg { width:15px; height:15px; fill:none; stroke:var(--muted); stroke-width:1.8; flex:none; }
-    .search-field input { width:100%; min-width:0; border:0; outline:0; color:var(--text); background:transparent; font:inherit; font-size:11px; }
-    .search-field input:focus-visible { outline:none; }
-    .search-field:focus-within { border-color:var(--blue); box-shadow:0 0 0 3px var(--blue-tint); }
-    .filter-pills { display:flex; gap:3px; padding:3px; background:var(--surface-muted); border:1px solid var(--border); border-radius:11px; }
-    .filter-pill, .quiet-action, .secondary-action, .mini-action { cursor:pointer; transition:background .16s ease, color .16s ease, border-color .16s ease, transform .16s ease; }
-    .filter-pill { border:1px solid transparent; border-radius:8px; padding:6px 8px; color:var(--muted); background:transparent; font-size:10px; font-weight:800; white-space:nowrap; }
-    .filter-pill span { display:inline-grid; place-items:center; min-width:16px; height:16px; margin-left:2px; border-radius:5px; color:inherit; background:rgba(127,145,165,.15); font-size:9px; }
-    .filter-pill[aria-pressed="true"] { color:#fff; background:linear-gradient(120deg,var(--blue-dark),var(--blue)); box-shadow:0 3px 9px rgba(0,113,206,.19); }
-    .quiet-action { border:0; background:transparent; color:var(--muted); font-size:10px; font-weight:800; padding:7px; }
-    .quiet-action:hover { color:var(--blue); }
+    .playback-bar { min-height:64px; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:9px 13px; margin:0 0 13px; border:1px solid var(--border); border-radius:13px; background:var(--surface); }
+    .playback-copy { display:flex; flex-direction:column; gap:1px; min-width:0; }
+    .playback-label { color:var(--muted); font-size:8px; font-weight:850; letter-spacing:.12em; }
+    .playback-copy strong { font-size:11px; font-weight:700; }
+    .playback-controls { display:flex; align-items:center; gap:5px; flex:none; }
+    .play-toggle { width:34px; height:34px; display:grid; place-items:center; border:1px solid var(--border); border-radius:50%; color:var(--blue); background:var(--surface-strong); cursor:pointer; font-size:13px; line-height:1; }
+    .period-button { min-width:46px; height:34px; padding:0 8px; border:0; border-bottom:2px solid transparent; color:var(--muted); background:transparent; cursor:pointer; font-size:10px; font-weight:750; }
+    .period-button[aria-pressed="true"] { border-bottom-color:var(--blue); color:var(--blue); }
+    .play-toggle:focus-visible, .period-button:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+    .play-toggle:hover, .period-button:hover { color:var(--blue); }
+    .number-change { animation:number-arrive .3s ease both; }
+    @keyframes number-arrive { from { opacity:.35; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+    .inflection-hit { border-color:var(--yellow) !important; box-shadow:0 0 0 2px rgba(255,194,32,.22),0 8px 24px rgba(255,194,32,.12),var(--shadow) !important; transition:box-shadow .25s ease,border-color .25s ease; }
+    .chart-card.has-inflection.inflection-hit { border-left-color:var(--yellow); }
     .chart-actions { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:5px; }
     .mini-action { border:1px solid var(--border); border-radius:7px; padding:4px 7px; color:var(--muted); background:var(--surface-muted); font-size:9px; font-weight:850; white-space:nowrap; }
     .mini-action:hover { color:var(--blue); border-color:rgba(0,113,206,.4); background:var(--blue-tint); }
     .mini-action[aria-pressed="true"] { background:var(--blue); border-color:var(--blue); color:#fff; }
-    .chart-card { transition:grid-column .2s ease, box-shadow .2s ease, transform .2s ease; scroll-margin-top:92px; }
     .chart-card.expanded { grid-column:1 / -1; border-color:rgba(0,113,206,.55); box-shadow:0 16px 40px rgba(0,113,206,.13),var(--shadow); }
     .chart-card.expanded .chart-canvas { height:410px; }
-    .chart-card.filtered-out { display:none !important; }
     .chart-card:hover { box-shadow:0 13px 35px rgba(15,38,67,.10),var(--shadow); }
     .chart-card.primary:hover { box-shadow:0 15px 38px rgba(0,113,206,.12),var(--shadow); }
     .timeline-heading { margin-top:27px; }
     .timeline-wrap { padding:18px; overflow:hidden; }
     .timeline-track { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; position:relative; }
     .timeline-track::before { content:""; position:absolute; left:7%; right:7%; top:12px; height:1px; background:linear-gradient(90deg,color-mix(in srgb,var(--teal) 50%,transparent),rgba(245,158,11,.65),rgba(0,113,206,.5)); }
-    .timeline-item { position:relative; padding:0 18px 2px 0; min-width:0; }
+    .timeline-item { position:relative; padding:0 18px 2px 0; min-width:0; border:1px solid transparent; border-radius:12px; transition:box-shadow .25s ease,border-color .25s ease; }
     .timeline-item:not(:first-child) { padding-left:18px; }
     .timeline-dot { position:relative; z-index:1; display:block; width:25px; height:25px; margin:0 0 13px; border:6px solid var(--surface-strong); outline:1px solid var(--border); border-radius:50%; background:var(--timeline-color,var(--blue)); box-shadow:0 0 0 4px var(--surface); }
     .timeline-period { color:var(--timeline-color,var(--blue)); font-size:10px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
@@ -330,25 +313,22 @@
     .decision-evidence { display:block; margin-top:11px; padding-top:9px; border-top:1px solid var(--border); color:var(--text); font-size:10px; line-height:1.45; font-weight:800; }
     .table-actions { display:flex; align-items:center; flex-wrap:wrap; gap:9px; }
     .secondary-action { padding:8px 11px; border:1px solid var(--border); border-radius:9px; color:var(--text); background:var(--surface-strong); font-size:10px; font-weight:850; }
-    .secondary-action:hover { background:var(--blue-tint); border-color:rgba(0,113,206,.45); color:var(--blue); transform:translateY(-1px); }
+    .secondary-action:hover { background:var(--blue-tint); border-color:rgba(0,113,206,.45); color:var(--blue); }
     .dependency-note { color:var(--muted); padding:8px 12px; margin:8px 0 12px; border:1px solid var(--border); border-radius:9px; font-size:10px; }
     .sr-only { position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
     @media (max-width:1100px) {
-      .chart-explorer { align-items:flex-start; flex-direction:column; }
-      .explorer-controls { width:100%; justify-content:flex-start; }
-      .search-field { flex:1; }
       .decision-grid { grid-template-columns:1fr; }
     }
     @media (max-width:720px) {
       .toolbar { top:0; margin-bottom:10px; }
-      .view-hint { text-align:left; max-width:none; }
       .chart-actions { justify-content:flex-start; }
       .chart-actions .badge { white-space:normal; }
-      .filter-pills { max-width:100%; }
-      .filter-pill { padding:6px 7px; }
       .chart-card.primary { grid-column:auto; }
       .chart-card.primary .chart-canvas { height:260px; }
+      .playback-bar { align-items:flex-start; flex-direction:column; gap:7px; }
+      .playback-controls { width:100%; }
+      .period-button { flex:1; }
       .timeline-wrap { padding:14px; }
       .timeline-track { grid-template-columns:1fr; gap:18px; }
       .timeline-track::before { left:12px; right:auto; top:12px; bottom:15px; width:1px; height:auto; background:linear-gradient(180deg,color-mix(in srgb,var(--teal) 50%,transparent),rgba(245,158,11,.65),rgba(0,113,206,.5)); }
@@ -363,7 +343,7 @@
       body { background:#fff !important; color:#18283b !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
       .shell { width:100% !important; max-width:none !important; }
       .hero { padding:15px 0 13px; box-shadow:none; break-after:avoid; }
-      .hero-actions, .toolbar, .notice, .chart-explorer, .chart-actions, .skip-link { display:none !important; }
+      .hero-actions, .toolbar, .notice, .playback-bar, .chart-actions, .skip-link { display:none !important; }
       main { padding:10px 0 0; }
       .panel[hidden] { display:block !important; }
       .panel { animation:none !important; break-inside:auto; }
@@ -374,7 +354,7 @@
       .kpi-card { min-height:100px; padding:10px; box-shadow:none; break-inside:avoid; }
       .chart-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
       .chart-card, .note-card, .narrative-card, .team-card, .source-item, .decision-card, .timeline-wrap { box-shadow:none !important; backdrop-filter:none !important; break-inside:avoid; }
-      .chart-card.filtered-out { display:block !important; }
+      .chart-card { opacity:1 !important; transform:none !important; }
       .chart-card.expanded { grid-column:auto; }
       .timeline-track { grid-template-columns:repeat(3,minmax(0,1fr)); }
       .decision-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
@@ -391,7 +371,8 @@
       .footer { margin-top:12px; }
     }
     @media (prefers-reduced-motion:reduce) {
-      *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+      *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+      .chart-card { opacity:1; transform:none; }
     }
   </style>
 </head>
@@ -436,36 +417,29 @@
         <button class="tab" role="tab" id="tab-analysis" aria-controls="panel-analysis" aria-selected="false" data-tab="analysis">03 · Thesis & rationale</button>
         <button class="tab" role="tab" id="tab-sources" aria-controls="panel-sources" aria-selected="false" data-tab="sources">04 · Sources & team</button>
       </nav>
-      <div class="view-hint" id="viewHint" aria-live="polite">Dashboard view · eight charts remain together for review</div>
     </div>
 
     <div id="chartLoadNotice" class="notice" role="status">Chart.js could not be loaded. Connect to the internet and reopen this file to load the charts from the required CDN.</div>
     <div class="dependency-note" id="dependencyNote" hidden>Chart annotations rely on the Chart.js annotation plugin. The explanatory callouts remain visible below the charts.</div>
 
     <section class="panel" id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard" data-panel="dashboard">
-      <div class="section-head">
-        <div><h2>Executive readout</h2><p>Four signals to anchor the leadership conversation before reviewing the full scorecard.</p></div>
-        <div class="micro-label">Observed patterns · not standalone proof of causality</div>
-      </div>
+      <div class="section-head"><h2>Executive readout</h2></div>
       <div class="insight-grid" id="executiveInsightGrid" aria-label="Executive readout, four key signals"></div>
 
-      <div class="section-head">
-        <div><h2>Executive KPI scorecard</h2><p>Latest value against the start-of-period baseline, using Member B's FY2023–FY2026 data package.</p></div>
-        <div class="micro-label">Leading indicators are teal · Lagging indicators are blue</div>
-      </div>
+      <div class="section-head"><h2>Executive KPI scorecard</h2></div>
       <div class="kpi-strip" id="kpiSummaryStrip"></div>
 
-      <div class="section-head">
-        <div><h2>Transformation performance & inflection diagnostics</h2><p>The eight indicators span revenue mix, platform monetization, investment, margin, productivity, and digital demand.</p></div>
-        <div class="micro-label">Annual fiscal axis for KPIs 1–7 · Q4 comparison axis for KPI 8</div>
-      </div>
-      <div class="chart-explorer glass" aria-label="Explore and filter KPI charts">
-        <div class="explorer-intro"><span class="explorer-overline">Explore the scorecard</span><strong>Find the signal behind each KPI</strong><span id="chartFilterStatus" aria-live="polite">Showing all 8 metrics</span></div>
-        <div class="explorer-controls">
-          <label class="search-field"><span class="sr-only">Search KPI charts</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg><input id="kpiSearch" type="search" placeholder="Search metrics…" autocomplete="off"></label>
-          <div class="filter-pills" role="group" aria-label="Filter by leading or lagging indicator"><button type="button" class="filter-pill" data-filter="All" aria-pressed="true">All <span>8</span></button><button type="button" class="filter-pill" data-filter="Leading" aria-pressed="false">Leading <span>3</span></button><button type="button" class="filter-pill" data-filter="Lagging" aria-pressed="false">Lagging <span>5</span></button></div>
-          <button type="button" id="resetKpiFilters" class="quiet-action">Reset</button>
+      <div class="section-head"><h2>Transformation performance & inflection diagnostics</h2></div>
+      <div class="playback-bar" aria-label="Transformation playback controls">
+        <div class="playback-copy"><span class="playback-label">TRANSFORMATION PLAYBACK</span><strong>Follow Walmart's digital shift</strong></div>
+        <div class="playback-controls" role="group" aria-label="Select fiscal year">
+          <button class="play-toggle" id="playToggle" type="button" aria-label="Play transformation playback" aria-pressed="false">▶</button>
+          <button class="period-button" type="button" data-period="0" aria-pressed="true">FY23</button>
+          <button class="period-button" type="button" data-period="1" aria-pressed="false">FY24</button>
+          <button class="period-button" type="button" data-period="2" aria-pressed="false">FY25</button>
+          <button class="period-button" type="button" data-period="3" aria-pressed="false">FY26</button>
         </div>
+        <span class="sr-only" id="activePeriodAnnouncement" aria-live="polite">Active period: FY2023</span>
       </div>
       <div class="chart-grid" id="chartGrid">
         <article class="glass chart-card primary" data-kpi-id="1" data-kpi-type="Lagging" data-kpi-dimension="revenue">
@@ -528,17 +502,17 @@
         </article>
       </div>
 
-      <div class="section-head timeline-heading"><div><h2>Three inflection points. One transformation story.</h2><p>Critical changes identified in Member B’s data package, with the measured shift and the disclosed or likely explanation.</p></div><span class="micro-label">Data-backed milestones · FY2024–Q4 FY2026</span></div>
+      <div class="section-head timeline-heading"><h2>Three inflection points</h2></div>
       <div class="glass timeline-wrap"><div class="timeline-track" id="inflectionTimeline" aria-label="Timeline of three KPI inflection points"></div></div>
 
-      <div class="section-head"><div><h2>Questions for the next operating review</h2><p>Use the data to frame the decisions that matter—not just to report what moved.</p></div><span class="micro-label">Management questions · not causal conclusions</span></div>
+      <div class="section-head"><h2>Questions for the next operating review</h2></div>
       <div class="decision-grid" id="decisionQuestions"></div>
     </section>
 
     <section class="panel" id="panel-data" role="tabpanel" aria-labelledby="tab-data" data-panel="data" hidden>
-      <div class="section-head"><div><h2>Data & comparability</h2><p>Values and calculation notes are reproduced from the Member B dataset summary in the provided conversation transcript.</p></div><div class="micro-label">Amounts in USD unless stated otherwise</div></div>
+      <div class="section-head"><h2>Data & comparability</h2></div>
       <div class="glass data-card">
-        <div class="table-topline"><div><h3>Metric time series & baseline-to-current change</h3><p>Metrics 1–7 use fiscal years; Metric 8 uses fourth-quarter comparisons.</p></div><div class="table-actions"><span class="badge">8 metrics · 4 periods each</span><button type="button" class="secondary-action" id="exportCsv">Download CSV ↓</button></div></div>
+        <div class="table-topline"><div><h3>Metric time series & baseline-to-current change</h3></div><div class="table-actions"><span class="badge">8 metrics · 4 periods each</span><button type="button" class="secondary-action" id="exportCsv">Download CSV ↓</button></div></div>
         <div class="table-wrap">
           <table aria-label="KPI time series and comparability notes">
             <thead><tr><th>Metric</th><th>Type</th><th>Baseline</th><th>Period 2</th><th>Period 3</th><th>Most recent</th><th>Change</th><th>Source / treatment / comparability notes</th></tr></thead>
@@ -556,7 +530,7 @@
     </section>
 
     <section class="panel" id="panel-analysis" role="tabpanel" aria-labelledby="tab-analysis" data-panel="analysis" hidden>
-      <div class="section-head"><div><h2>Thesis, KPI rationale & strategic interpretation</h2><p>Metric logic and the existing two-paragraph interpretation from the conversation are aligned with the dashboard's eight KPI names.</p></div><div class="micro-label">Leading / lagging balance: 3 / 5</div></div>
+      <div class="section-head"><h2>Thesis, KPI rationale & strategic interpretation</h2></div>
       <div class="narrative-grid">
         <article class="glass narrative-card">
           <h3>KPI selection rationale <span class="badge">3 leading · 5 lagging</span></h3>
@@ -583,9 +557,9 @@
     </section>
 
     <section class="panel" id="panel-sources" role="tabpanel" aria-labelledby="tab-sources" data-panel="sources" hidden>
-      <div class="section-head"><div><h2>Source register</h2><p>Named public disclosures underpinning the time series, shown with reporting dates and metric coverage.</p></div><div class="micro-label">Official SEC / Walmart investor-relations links</div></div>
+      <div class="section-head"><h2>Source register</h2></div>
       <div class="glass data-card"><div class="source-grid" id="sourcesGrid"></div><p class="source-disclaimer">Data values are hard-coded in this HTML file and are not fetched from an API. Estimates or calculations are labeled in the metric notes. Annual revenue, gross profit-rate, CapEx, and membership/other-income figures are from company filings; digital and advertising series use the public disclosure set identified in the prior conversation. Chart.js and its annotation plugin load from their public CDNs.</p></div>
-      <div class="section-head"><div><h2>Team & contribution areas</h2><p>Group 9 · Week 7 Value & KPIs · Four individual contributor cards across three assignment roles.</p></div><div class="micro-label">4 team members · 3 assignment roles</div></div>
+      <div class="section-head"><h2>Team & contribution areas</h2></div>
       <div class="team-grid" role="list" aria-label="Group 9 team members and contribution areas">
         <article class="glass team-card member-a" role="listitem">
           <div class="member">Member A · Metric Selector</div>
@@ -663,8 +637,102 @@
       ]
     };
 
+    let activePeriodIndex = 0;
+    let playbackTimer = null;
+    let focusFrame = null;
+    let inflectionTimer = null;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const charts = {};
-    const chartColors = { blue: "#0071ce", navy: "#041e42", teal: "#148a5b", yellow: "#ffc220", purple: "#7065f0", slate: "#78879a", amber: "#f59e0b" };
+    const chartColors = { blue: "#0071ce", navy: "#041e42", teal: "#148a5b", yellow: "#ffc220", slate: "#78879a", amber: "#f59e0b" };
+
+    const activePeriodChartPlugin = {
+      id: "active-period-focus",
+      beforeDatasetsDraw(chart) {
+        if (chart.$printMode) return;
+        const scale = chart.scales.x;
+        if (!scale || !chart.chartArea || !chart.data.labels.length) return;
+        const position = chart.$periodFocusIndex ?? activePeriodIndex;
+        const leftIndex = Math.floor(position), rightIndex = Math.min(leftIndex + 1, chart.data.labels.length - 1);
+        const fraction = position - leftIndex;
+        const leftCenter = scale.getPixelForValue(leftIndex);
+        const rightCenter = scale.getPixelForValue(rightIndex);
+        const center = leftCenter + (rightCenter - leftCenter) * fraction;
+        const step = chart.data.labels.length > 1 ? Math.abs(scale.getPixelForValue(1) - scale.getPixelForValue(0)) : chart.chartArea.right - chart.chartArea.left;
+        const ctx = chart.ctx;
+        ctx.save();
+        ctx.fillStyle = document.documentElement.dataset.theme === "dark" ? "rgba(56,158,244,.10)" : "rgba(0,113,206,.07)";
+        ctx.fillRect(Math.max(chart.chartArea.left, center - step / 2), chart.chartArea.top, Math.min(step, chart.chartArea.right - chart.chartArea.left), chart.chartArea.bottom - chart.chartArea.top);
+        ctx.restore();
+      }
+    };
+
+    function alphaColor(color, opacity) {
+      if (typeof color !== "string") return color;
+      let match = color.match(/^rgba?\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([\d.]+))?\)$/i);
+      if (match) return `rgba(${match[1]},${match[2]},${match[3]},${(match[4] === undefined ? 1 : Number(match[4])) * opacity})`;
+      match = color.match(/^#([\da-f]{3}|[\da-f]{6})$/i);
+      if (match) {
+        let hex = match[1];
+        if (hex.length === 3) hex = [...hex].map(part => part + part).join("");
+        return `rgba(${parseInt(hex.slice(0,2),16)},${parseInt(hex.slice(2,4),16)},${parseInt(hex.slice(4,6),16)},${opacity})`;
+      }
+      return color;
+    }
+    function cloneStyle(value) { return Array.isArray(value) ? value.slice() : value; }
+    function periodStyle(value, index, active, kind) {
+      const source = Array.isArray(value) ? value[index] : value;
+      if (kind === "radius") return Number(source || 0) + (index === active ? 1 : 0);
+      if (kind === "width") return Number(source || 1) + (index === active ? .8 : 0);
+      return alphaColor(source, index === active ? 1 : .5);
+    }
+    function applyActivePeriodStyles(chart, duration = 400) {
+      chart.options.animation.duration = duration;
+      chart.data.datasets.forEach(dataset => {
+        const lineDataset = dataset.type === "line" || chart.config.type === "line";
+        if (!dataset.$periodBase) {
+          dataset.$periodBase = {};
+          ["backgroundColor","borderColor","pointBackgroundColor","pointBorderColor","pointRadius","borderWidth"].forEach(key => {
+            if (dataset[key] !== undefined) dataset.$periodBase[key] = cloneStyle(dataset[key]);
+          });
+        }
+        const count = chart.data.labels.length;
+        ["backgroundColor","borderColor","pointBackgroundColor","pointBorderColor","pointRadius","borderWidth"].forEach(key => {
+          const base = dataset.$periodBase[key];
+          if (base === undefined) return;
+          if (lineDataset && ["backgroundColor","borderColor","borderWidth"].includes(key)) {
+            dataset[key] = base;
+            if (key === "borderColor" || key === "borderWidth") {
+              dataset.segment = dataset.segment || {};
+              dataset.segment[key] = context => {
+                const sampleIndex = context.p0DataIndex ?? context.p1DataIndex ?? 0;
+                const colorOrWidth = Array.isArray(base) ? base[sampleIndex] : base;
+                const focused = sampleIndex === activePeriodIndex || context.p1DataIndex === activePeriodIndex;
+                return key === "borderColor" ? alphaColor(colorOrWidth,focused ? 1 : .5) : Number(colorOrWidth || 1) + (focused ? .8 : 0);
+              };
+            }
+            return;
+          }
+          const kind = key === "pointRadius" ? "radius" : key === "borderWidth" ? "width" : "color";
+          dataset[key] = Array.from({length:count}, (_,index) => periodStyle(base,index,activePeriodIndex,kind));
+        });
+      });
+      chart.update(duration ? undefined : "none");
+    }
+    function animateFocusBands(from, to) {
+      if (focusFrame) cancelAnimationFrame(focusFrame);
+      const start = performance.now();
+      const duration = reducedMotion.matches ? 0 : 400;
+      const draw = now => {
+        const progress = duration ? Math.min(1,(now-start)/duration) : 1;
+        const eased = 1 - Math.pow(1-progress,3);
+        Object.values(charts).forEach(chart => {
+          if (chart) { chart.$periodFocusIndex = from + (to-from)*eased; chart.draw(); }
+        });
+        if (progress < 1) focusFrame = requestAnimationFrame(draw);
+        else focusFrame = null;
+      };
+      focusFrame = requestAnimationFrame(draw);
+    }
 
     function themeTextColor() { return document.documentElement.dataset.theme === "dark" ? "#dce7f4" : "#334155"; }
     function themeGridColor() { return document.documentElement.dataset.theme === "dark" ? "rgba(174,191,212,.15)" : "rgba(71,85,105,.13)"; }
@@ -703,8 +771,13 @@
         return;
       }
       registerAnnotations();
+      Chart.register(activePeriodChartPlugin);
       const d = WALMART_DASHBOARD_DATA;
-      const make = (id, config) => { charts[id] = new Chart(document.getElementById(id), config); };
+      const make = (id, config) => {
+        charts[id] = new Chart(document.getElementById(id), config);
+        charts[id].$periodFocusIndex = activePeriodIndex;
+        applyActivePeriodStyles(charts[id],0);
+      };
 
       {
         const o = cloneBase(); o.scales.x.stacked = true; o.scales.y.stacked = true; o.scales.y.min = 0; o.scales.y.max = 100;
@@ -731,7 +804,7 @@
         const o = cloneBase(); o.scales.x.stacked = true; o.scales.y.stacked = true; o.scales.y.min = 0; o.scales.y.max = 8; o.scales.y.ticks.callback = v => "$"+v+"B";
         o.plugins.tooltip.callbacks = { label:ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toFixed(3)}B` };
         make("chart4", { type:"bar", data:{ labels:d.annualLabels, datasets:[
-          { type:"line", label:"Consolidated Membership & Other Income", data:d.metrics[3].values, borderColor:chartColors.navy, backgroundColor:chartColors.yellow, borderWidth:2.7, pointRadius:5, pointBackgroundColor:chartColors.yellow, pointBorderColor:chartColors.navy, tension:.2, yAxisID:"y", order:0 },
+          { type:"line", label:"Consolidated Membership & Other Income", data:d.metrics[3].values, borderColor:chartColors.navy, backgroundColor:"rgba(4,30,66,.08)", borderWidth:2.7, pointRadius:5, pointBackgroundColor:chartColors.navy, pointBorderColor:"#fff", tension:.2, yAxisID:"y", order:0 },
           { type:"bar", label:"Disclosed membership fee revenue", data:d.denominators.disclosedMembershipFeeB, backgroundColor:"rgba(0,113,206,.83)", borderRadius:4, stack:"income", order:1 },
           { type:"bar", label:"Other income component (residual)", data:d.denominators.otherIncomeComponentB, backgroundColor:"rgba(148,163,184,.65)", borderRadius:4, stack:"income", order:2 }
         ]}, options:o });
@@ -748,12 +821,12 @@
       {
         const o = cloneBase(); o.scales.y.min = 22.5; o.scales.y.max = 25; o.scales.y.ticks.callback = v => v.toFixed(1)+"%"; o.scales.y.title = { display:true,text:"% of consolidated net sales",color:themeTextColor(),font:{size:10,weight:"600"} };
         o.plugins.tooltip.callbacks = { label:ctx => ` Gross Profit Rate: ${ctx.parsed.y.toFixed(1)}%` };
-        make("chart6", { type:"line", data:{ labels:d.annualLabels, datasets:[{ label:"Gross profit rate (%)", data:d.metrics[5].values, borderColor:chartColors.purple, backgroundColor:"rgba(112,101,240,.13)", borderWidth:3, pointRadius:5, pointHoverRadius:8, pointBackgroundColor:chartColors.purple, fill:true, tension:.25 }]}, options:o });
+        make("chart6", { type:"line", data:{ labels:d.annualLabels, datasets:[{ label:"Gross profit rate (%)", data:d.metrics[5].values, borderColor:chartColors.blue, backgroundColor:"rgba(0,113,206,.1)", borderWidth:3, pointRadius:5, pointHoverRadius:8, pointBackgroundColor:chartColors.blue, fill:true, tension:.25 }]}, options:o });
       }
       {
         const o = cloneBase(); o.scales.y.min = 240; o.scales.y.max = 360; o.scales.y.ticks.callback = v => "~$"+v+"K"; o.scales.y.title = { display:true,text:"USD thousands per associate",color:themeTextColor(),font:{size:10,weight:"600"} };
         o.plugins.tooltip.callbacks = { label:ctx => ` Revenue / associate: ~$${ctx.parsed.y}K` };
-        make("chart7", { type:"bar", data:{ labels:d.annualLabels, datasets:[{ label:"Revenue per associate (~$K)", data:d.metrics[6].values, backgroundColor:"rgba(112,101,240,.78)", borderColor:"#5048c6", borderWidth:1.5, borderRadius:6 }]}, options:o });
+        make("chart7", { type:"bar", data:{ labels:d.annualLabels, datasets:[{ label:"Revenue per associate (~$K)", data:d.metrics[6].values, backgroundColor:"rgba(0,113,206,.78)", borderColor:"#004c91", borderWidth:1.5, borderRadius:6 }]}, options:o });
       }
       {
         const o = cloneBase(); o.scales.y.min = 0; o.scales.y.max = 600; o.scales.y.ticks.callback = v => "~"+v+" bps"; o.scales.y.title = { display:true,text:"Basis points (100 bps = 1.0% comp)",color:themeTextColor(),font:{size:10,weight:"600"} };
@@ -770,39 +843,77 @@
 
     function formatCell(value) { return String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;"); }
     function renderExecutiveInsights() {
-      const d = WALMART_DASHBOARD_DATA;
-      const ecommerce = d.metrics[0];
-      const grossRate = d.metrics[5];
-      const revenuePerAssociate = d.metrics[6];
-      const advertising = d.metrics[2];
-      const digitalComp = d.metrics[7];
-      const mixShift = (ecommerce.values[3] - ecommerce.values[0]).toFixed(2);
-      const marginBps = Math.round((grossRate.values[3] - grossRate.values[0]) * 100);
-      const productivityLift = (((revenuePerAssociate.values[3] - revenuePerAssociate.values[0]) / revenuePerAssociate.values[0]) * 100).toFixed(1);
-      const totalComp = d.denominators.totalUSCompQ4FY2026Bps;
       const insights = [
-        { id:"01", tone:"", kicker:"Revenue mix", value:ecommerce.displayValues[3], title:"eCommerce share of total revenue", copy:`Up from ${ecommerce.displayValues[0]} in FY2023 — a +${mixShift} percentage-point mix shift across the four-year series.` },
-        { id:"02", tone:"teal", kicker:"Financial guardrails", value:grossRate.displayValues[3], title:"Gross profit rate in FY2026", copy:`Gross profit rate rose ${marginBps} bps; revenue per associate also increased ~${productivityLift}% to ${revenuePerAssociate.displayValues[3]}. These are directional guardrails, not causal estimates.` },
-        { id:"03", tone:"amber", kicker:"Monetization caveat", value:advertising.displayValues[3], title:"Global advertising growth in FY2026", copy:`Up from ${advertising.displayValues[2]} in FY2025, but the latest result includes acquired VIZIO advertising revenue and is not wholly organic growth.` },
-        { id:"04", tone:"purple", kicker:"U.S. digital demand", value:digitalComp.displayValues[3], title:"eCommerce contribution to Q4 comp sales", copy:`Exceeded total U.S. Q4 comparable-sales growth of ${totalComp} bps; other components offset part of digital's contribution.` }
+        { id:"01", tone:"", kicker:"Revenue mix", metric:1 },
+        { id:"02", tone:"", kicker:"Financial guardrails", metric:6 },
+        { id:"03", tone:"amber", kicker:"Monetization caveat", metric:3 },
+        { id:"04", tone:"teal", kicker:"U.S. digital demand", metric:8 }
       ];
       document.getElementById("executiveInsightGrid").innerHTML = insights.map(item => `
         <article class="glass insight-card ${item.tone}">
           <div class="insight-kicker"><span class="insight-index">${item.id}</span> ${formatCell(item.kicker)}</div>
-          <div class="insight-value">${formatCell(item.value)}</div>
-          <div class="insight-title">${formatCell(item.title)}</div>
-          <p class="insight-copy">${formatCell(item.copy)}</p>
+          <div class="insight-value" data-insight-value="${item.metric}"></div>
+          <div class="insight-title" data-insight-title="${item.metric}"></div>
+          <p class="insight-copy" data-insight-copy="${item.metric}"></p>
         </article>`).join("");
+      updateExecutiveReadout(false);
+    }
+    function setAnimatedText(element, value, animate) {
+      if (!element || element.textContent === value) return;
+      element.textContent = value;
+      if (animate && !reducedMotion.matches) {
+        element.classList.remove("number-change");
+        void element.offsetWidth;
+        element.classList.add("number-change");
+      }
+    }
+    function updateExecutiveReadout(animate = true) {
+      const metrics = WALMART_DASHBOARD_DATA.metrics;
+      const index = activePeriodIndex;
+      const fy = metrics[0].periods[index];
+      const ecommerce = metrics[0], gross = metrics[5], productivity = metrics[6], ads = metrics[2], digital = metrics[7];
+      const periodValues = {
+        1: { value:ecommerce.displayValues[index], title:`eCommerce share of total revenue · ${fy}`, copy:`${ecommerce.displayValues[index]} of consolidated revenue. Baseline: ${ecommerce.displayValues[0]} in FY2023.` },
+        6: { value:gross.displayValues[index], title:`Gross profit rate · ${fy}`, copy:`Revenue per associate was ${productivity.displayValues[index]}. These are directional guardrails, not causal estimates.` },
+        3: { value:ads.displayValues[index], title:`Global advertising growth · ${fy}`, copy:index === 3 ? `Up from ${ads.displayValues[index-1]} in FY2025; FY2026 includes acquired VIZIO revenue and is not wholly organic.` : index === 0 ? `Starting point for the FY2023–FY2026 advertising series.` : `Compared with ${ads.displayValues[index-1]} in ${ads.periods[index-1]}.` },
+        8: { value:digital.displayValues[index], title:`eCommerce contribution to comp sales · ${digital.periods[index]}`, copy:index === 3 ? `Exceeded total U.S. Q4 comparable-sales growth of ${WALMART_DASHBOARD_DATA.denominators.totalUSCompQ4FY2026Bps} bps; other components offset part of digital's contribution.` : `U.S. fourth-quarter eCommerce contribution, ex-fuel, for ${digital.periods[index]}.` }
+      };
+      Object.entries(periodValues).forEach(([id,item]) => {
+        setAnimatedText(document.querySelector(`[data-insight-value="${id}"]`),item.value,animate);
+        const title = document.querySelector(`[data-insight-title="${id}"]`);
+        if (title) title.textContent = item.title;
+        const copy = document.querySelector(`[data-insight-copy="${id}"]`);
+        if (copy) copy.textContent = item.copy;
+      });
     }
     function renderSummary() {
       const target = document.getElementById("kpiSummaryStrip");
-      target.innerHTML = WALMART_DASHBOARD_DATA.metrics.map((m, idx) => `
-        <article class="glass kpi-card ${m.type === "Leading" ? "leading" : "lagging"} ${m.hasInflection ? "inflection" : ""}" style="animation-delay:${Math.min(idx*35,245)}ms">
+      target.innerHTML = WALMART_DASHBOARD_DATA.metrics.map(m => `
+        <article class="glass kpi-card ${m.type === "Leading" ? "leading" : "lagging"} ${m.hasInflection ? "inflection" : ""}">
           <div class="kpi-top"><span class="metric-id">KPI ${String(m.id).padStart(2,"0")}</span><span class="badge ${m.type.toLowerCase()}">${m.type}</span></div>
           <div class="kpi-name">${formatCell(m.name.replace(/^\d+\. /,""))}</div>
-          <div class="kpi-values"><span class="kpi-current">${formatCell(m.displayValues[m.displayValues.length-1])}</span><span class="kpi-delta ${m.id === 3 ? "caveat" : m.id === 5 ? "neutral" : ""}">${formatCell(m.delta)}</span></div>
-          <div class="kpi-base"><span>Baseline: ${formatCell(m.displayValues[0])}</span><span>${m.id===8?"Q4 FY26":"FY26"}</span></div>
+          <div class="kpi-values"><span class="kpi-current" data-summary-current="${m.id}">${formatCell(m.displayValues[activePeriodIndex])}</span><span class="kpi-delta ${m.id === 3 ? "caveat" : m.id === 5 ? "neutral" : ""}" data-summary-delta="${m.id}"></span></div>
+          <div class="kpi-base"><span>Baseline: ${formatCell(m.displayValues[0])}</span><span data-summary-period="${m.id}">${formatCell(m.periods[activePeriodIndex])}</span></div>
         </article>`).join("");
+      updateSummaryValues(false);
+    }
+    function summaryDelta(metric,index) {
+      const difference = metric.values[index] - metric.values[0];
+      const sign = difference > 0 ? "+" : "";
+      if (metric.id === 1 || metric.id === 2 || metric.id === 5 || metric.id === 6) return `${sign}${difference.toFixed(2)} pts`;
+      if (metric.id === 3) return `${sign}${difference.toFixed(0)} pts`;
+      if (metric.id === 4) return `${sign}$${difference.toFixed(3)}B`;
+      if (metric.id === 7) return `${sign}~$${difference.toFixed(0)}K`;
+      return `${sign}~${difference.toFixed(0)} bps`;
+    }
+    function updateSummaryValues(animate = true) {
+      WALMART_DASHBOARD_DATA.metrics.forEach(metric => {
+        setAnimatedText(document.querySelector(`[data-summary-current="${metric.id}"]`),metric.displayValues[activePeriodIndex],animate);
+        const period = document.querySelector(`[data-summary-period="${metric.id}"]`);
+        if (period) period.textContent = metric.periods[activePeriodIndex];
+        const delta = document.querySelector(`[data-summary-delta="${metric.id}"]`);
+        if (delta) delta.textContent = summaryDelta(metric,activePeriodIndex);
+      });
     }
     function renderDataTable() {
       document.getElementById("dataTableBody").innerHTML = WALMART_DASHBOARD_DATA.metrics.map(m => `
@@ -823,10 +934,10 @@
     }
     function renderInflectionTimeline() {
       const d = WALMART_DASHBOARD_DATA;
-      const tones = { 2: "var(--teal)", 3: "#d89000", 8: "#0071ce" };
+      const tones = { 2: "var(--teal)", 3: "#d89000", 8: "var(--teal)" };
       document.getElementById("inflectionTimeline").innerHTML = d.inflections.map((item, index) => {
         const metric = d.metrics.find(m => m.id === item.metricId);
-        return `<article class="timeline-item" style="--timeline-color:${tones[item.metricId] || "#0071ce"}">
+        return `<article class="timeline-item" data-inflection-metric="${item.metricId}" style="--timeline-color:${tones[item.metricId] || "#0071ce"}">
           <span class="timeline-dot" aria-hidden="true"></span>
           <div class="timeline-period">${formatCell(item.period)} · Inflection ${String(index + 1).padStart(2,"0")}</div>
           <div class="timeline-change">${formatCell(item.change)}</div>
@@ -835,6 +946,62 @@
           <span class="timeline-tag">Source metrics · ${formatCell(metric ? metric.sources : "see source register")}</span>
         </article>`;
       }).join("");
+    }
+    function stopPlayback() {
+      if (playbackTimer) clearInterval(playbackTimer);
+      playbackTimer = null;
+      const button = document.getElementById("playToggle");
+      if (button) { button.textContent = "▶"; button.setAttribute("aria-label","Play transformation playback"); button.setAttribute("aria-pressed","false"); }
+    }
+    function emphasizeInflections(index) {
+      clearTimeout(inflectionTimer);
+      document.querySelectorAll(".inflection-hit").forEach(element => element.classList.remove("inflection-hit"));
+      if (reducedMotion.matches) return;
+      const metricIds = index === 1 ? [2] : index === 3 ? [3,8] : [];
+      metricIds.forEach(id => {
+        document.querySelector(`#chartGrid [data-kpi-id="${id}"]`)?.classList.add("inflection-hit");
+        document.querySelector(`#inflectionTimeline [data-inflection-metric="${id}"]`)?.classList.add("inflection-hit");
+      });
+      if (metricIds.length) inflectionTimer = setTimeout(() => document.querySelectorAll(".inflection-hit").forEach(element => element.classList.remove("inflection-hit")),750);
+    }
+    function selectPeriod(index, animate = true) {
+      const nextIndex = Math.max(0,Math.min(3,Number(index)));
+      const previousIndex = activePeriodIndex;
+      activePeriodIndex = nextIndex;
+      document.querySelectorAll(".period-button").forEach(button => button.setAttribute("aria-pressed",String(Number(button.dataset.period) === activePeriodIndex)));
+      document.getElementById("activePeriodAnnouncement").textContent = `Active period: ${WALMART_DASHBOARD_DATA.metrics[0].periods[activePeriodIndex]}`;
+      updateExecutiveReadout(animate);
+      updateSummaryValues(animate);
+      Object.values(charts).forEach(chart => chart && applyActivePeriodStyles(chart,reducedMotion.matches || !animate ? 0 : 400));
+      const focusStart = Object.values(charts).find(chart => chart)?.$periodFocusIndex ?? previousIndex;
+      animateFocusBands(focusStart,activePeriodIndex);
+      if (previousIndex !== nextIndex) emphasizeInflections(nextIndex);
+    }
+    function startPlayback() {
+      if (playbackTimer) return;
+      if (activePeriodIndex === 3) selectPeriod(0,true);
+      const button = document.getElementById("playToggle");
+      button.textContent = "Ⅱ";
+      button.setAttribute("aria-label","Pause transformation playback");
+      button.setAttribute("aria-pressed","true");
+      playbackTimer = setInterval(() => {
+        const next = activePeriodIndex + 1;
+        selectPeriod(next,true);
+        if (next >= 3) stopPlayback();
+      },1050);
+    }
+    function observeChartEntrances() {
+      const cards = document.querySelectorAll("#chartGrid .chart-card");
+      if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+        cards.forEach(card => card.classList.add("is-visible"));
+        return;
+      }
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }),{threshold:.08});
+      cards.forEach(card => observer.observe(card));
     }
     function renderDecisionQuestions() {
       const d = WALMART_DASHBOARD_DATA;
@@ -846,28 +1013,12 @@
       const cards = [
         { tone:"#d89000", kicker:"Growth quality", question:"How much of advertising growth is organic after separating the VIZIO contribution?", copy:"FY2026’s reported acceleration is strategically important, but the acquisition caveat means it should not be treated as a clean read of underlying ad-platform momentum.", evidence:`${ads.displayValues[2]} in FY2025 → ${ads.displayValues[3]} in FY2026 · Sources ${ads.sources}` },
         { tone:"var(--teal)", kicker:"Digital economics", question:"Can the business keep scaling digital demand while protecting overall margin?", copy:"Revenue mix is moving toward eCommerce, while gross profit rate is a useful guardrail—not proof that digital fulfillment itself is more profitable.", evidence:`eCommerce mix ${ecommerce.displayValues[0]} → ${ecommerce.displayValues[3]} · Gross profit ${margin.displayValues[0]} → ${margin.displayValues[3]}` },
-        { tone:"#7065f0", kicker:"Investment productivity", question:"What evidence links higher investment intensity to measurable productivity gains?", copy:"CapEx is a broad proxy that includes stores and supply chain assets; revenue per associate is directional and based on a rounded headcount, so neither isolates digital ROI.", evidence:`CapEx intensity ${capex.displayValues[3]} · Revenue per associate ${productivity.displayValues[3]}` }
+        { tone:"#0071ce", kicker:"Investment productivity", question:"What evidence links higher investment intensity to measurable productivity gains?", copy:"CapEx is a broad proxy that includes stores and supply chain assets; revenue per associate is directional and based on a rounded headcount, so neither isolates digital ROI.", evidence:`CapEx intensity ${capex.displayValues[3]} · Revenue per associate ${productivity.displayValues[3]}` }
       ];
       document.getElementById("decisionQuestions").innerHTML = cards.map((item,index) => `<article class="glass decision-card" style="--decision-color:${item.tone}">
         <div class="decision-kicker">Leadership question 0${index+1} · ${formatCell(item.kicker)}</div>
         <h3>${formatCell(item.question)}</h3><p>${formatCell(item.copy)}</p><span class="decision-evidence">${formatCell(item.evidence)}</span>
       </article>`).join("");
-    }
-    let activeKpiFilter = "All";
-    function applyKpiFilters() {
-      const query = (document.getElementById("kpiSearch").value || "").trim().toLowerCase();
-      const cards = [...document.querySelectorAll("#chartGrid .chart-card")];
-      let count = 0;
-      cards.forEach(card => {
-        const typeMatch = activeKpiFilter === "All" || card.dataset.kpiType === activeKpiFilter;
-        const searchMatch = !query || `${card.textContent} ${card.dataset.kpiDimension || ""}`.toLowerCase().includes(query);
-        const visible = typeMatch && searchMatch;
-        card.classList.toggle("filtered-out", !visible);
-        if (visible) count++;
-      });
-      document.getElementById("chartFilterStatus").textContent = count === 8 ? "Showing all 8 metrics" : `Showing ${count} of 8 metrics`;
-      document.querySelectorAll("[data-filter]").forEach(button => button.setAttribute("aria-pressed",String(button.dataset.filter === activeKpiFilter)));
-      if (charts && Object.keys(charts).length) requestAnimationFrame(() => Object.values(charts).forEach(chart => chart && chart.resize()));
     }
     function toggleChartFocus(id, button) {
       const card = document.querySelector(`#${id}`)?.closest(".chart-card");
@@ -921,8 +1072,6 @@
         tab.setAttribute("aria-selected", String(selected));
         tab.tabIndex = selected ? 0 : -1;
       });
-      const names = { dashboard:"Dashboard view · eight charts remain together for review", data:"Data view · source notes and caveats shown alongside time series", analysis:"Analysis view · KPI logic and interpretation", sources:"Sources view · nine linked disclosures and role descriptions" };
-      document.getElementById("viewHint").textContent = names[name];
       if (name === "dashboard") requestAnimationFrame(() => Object.values(charts).forEach(ch => ch && ch.resize()));
     }
     function toggleAllSections() {
@@ -934,8 +1083,22 @@
         const selected = !isAll && tab.dataset.tab === "dashboard";
         tab.setAttribute("aria-selected",String(selected)); tab.tabIndex = selected ? 0 : -1;
       });
-      document.getElementById("viewHint").textContent = isAll ? "All sections visible · useful for review and printing" : "Dashboard view · eight charts remain together for review";
       requestAnimationFrame(() => Object.values(charts).forEach(ch => ch && ch.resize()));
+    }
+    function setChartPrintMode(enabled) {
+      Object.values(charts).forEach(chart => {
+        if (!chart) return;
+        chart.$printMode = enabled;
+        chart.data.datasets.forEach(dataset => {
+          if (!dataset.$periodBase) return;
+          if (enabled) {
+            Object.keys(dataset.$periodBase).forEach(key => { dataset[key] = cloneStyle(dataset.$periodBase[key]); });
+            dataset.segment = undefined;
+          }
+        });
+        if (!enabled) applyActivePeriodStyles(chart,0);
+        else chart.update("none");
+      });
     }
     function toggleTheme() {
       const dark = document.documentElement.dataset.theme !== "dark";
@@ -947,14 +1110,18 @@
       Object.values(charts).forEach(chart => {
         if (!chart) return;
         chart.data.datasets.forEach(dataset => {
-          const usesTeal = dataset.borderColor === previousTeal;
-          if (usesTeal) {
-            dataset.borderColor = chartColors.teal;
-            dataset.backgroundColor = dark ? "rgba(74,203,138,.13)" : "rgba(20,138,91,.11)";
-          }
-          if (dataset.pointBackgroundColor === previousTeal) dataset.pointBackgroundColor = chartColors.teal;
-          else if (Array.isArray(dataset.pointBackgroundColor)) dataset.pointBackgroundColor = dataset.pointBackgroundColor.map(color => color === previousTeal ? chartColors.teal : color);
+          if (dataset.$periodBase) Object.keys(dataset.$periodBase).forEach(key => {
+            const replaceThemeColor = color => {
+              if (color === previousTeal) return chartColors.teal;
+              if (typeof color === "string" && color.startsWith("rgba(20,138,91,")) return dark ? color.replace("rgba(20,138,91,", "rgba(74,203,138,") : color;
+              if (typeof color === "string" && color.startsWith("rgba(74,203,138,")) return dark ? color : color.replace("rgba(74,203,138,", "rgba(20,138,91,");
+              return color;
+            };
+            const value = dataset.$periodBase[key];
+            dataset.$periodBase[key] = Array.isArray(value) ? value.map(replaceThemeColor) : replaceThemeColor(value);
+          });
         });
+        applyActivePeriodStyles(chart,0);
         const text = themeTextColor(), grid = themeGridColor();
         if (chart.options.plugins.legend) chart.options.plugins.legend.labels.color = text;
         for (const axis of Object.values(chart.options.scales || {})) {
@@ -970,13 +1137,15 @@
     }
     document.addEventListener("DOMContentLoaded", () => {
       renderExecutiveInsights(); renderSummary(); renderDataTable(); renderSources(); renderInflectionTimeline(); renderDecisionQuestions(); makeCharts();
+      observeChartEntrances();
+      window.addEventListener("beforeprint", () => setChartPrintMode(true));
+      window.addEventListener("afterprint", () => setChartPrintMode(false));
       document.querySelectorAll("[data-tab]").forEach(tab => tab.addEventListener("click", () => activateTab(tab.dataset.tab)));
+      document.getElementById("playToggle").addEventListener("click", () => playbackTimer ? stopPlayback() : startPlayback());
+      document.querySelectorAll("[data-period]").forEach(button => button.addEventListener("click", () => { stopPlayback(); selectPeriod(button.dataset.period,true); }));
       document.getElementById("themeToggle").addEventListener("click", toggleTheme);
       document.getElementById("showAllToggle").addEventListener("click", toggleAllSections);
       document.getElementById("printToggle").addEventListener("click", () => window.print());
-      document.getElementById("kpiSearch").addEventListener("input", applyKpiFilters);
-      document.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click", () => { activeKpiFilter = button.dataset.filter; applyKpiFilters(); }));
-      document.getElementById("resetKpiFilters").addEventListener("click", () => { activeKpiFilter = "All"; document.getElementById("kpiSearch").value = ""; applyKpiFilters(); });
       document.getElementById("exportCsv").addEventListener("click", exportMetricCsv);
       document.querySelectorAll("[data-action]").forEach(button => button.addEventListener("click", () => button.dataset.action === "expand" ? toggleChartFocus(button.dataset.chart, button) : exportChartImage(button.dataset.chart)));
       const stickyToolbar = document.querySelector(".toolbar");
@@ -989,16 +1158,6 @@
       };
       window.addEventListener("scroll", updateScrollChrome, {passive:true});
       window.addEventListener("resize", updateScrollChrome, {passive:true}); updateScrollChrome();
-      document.addEventListener("keydown", event => {
-        const active = document.activeElement;
-        const inField = active && ["INPUT","TEXTAREA","SELECT"].includes(active.tagName);
-        if (event.key === "/" && !inField && !event.ctrlKey && !event.metaKey && !event.altKey) {
-          event.preventDefault(); document.getElementById("kpiSearch").focus();
-        }
-        if (event.key === "Escape" && active === document.getElementById("kpiSearch") && active.value) {
-          active.value = ""; applyKpiFilters();
-        }
-      });
       document.querySelector(".tabs").addEventListener("keydown", event => {
         if (!["ArrowLeft","ArrowRight","Home","End"].includes(event.key)) return;
         const tabs = [...document.querySelectorAll("[data-tab]")];

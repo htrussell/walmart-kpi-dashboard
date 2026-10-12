@@ -14,22 +14,22 @@
       --blue-dark: #004c91;
       --navy: #041e42;
       --yellow: #ffc220;
-      --teal: #0f9888;
+      --teal: #148a5b;
       --purple: #7065f0;
-      --bg: #eff4f9;
-      --surface: rgba(255,255,255,.79);
-      --surface-strong: rgba(255,255,255,.94);
-      --surface-muted: rgba(241,246,251,.83);
-      --text: #18283b;
-      --muted: #5d6d80;
-      --border: rgba(122,145,168,.24);
-      --grid: rgba(100,116,139,.15);
-      --shadow: 0 12px 32px rgba(15,38,67,.075);
-      --positive-bg: rgba(13,148,136,.13);
-      --positive-text: #0a786d;
-      --amber-bg: rgba(255,194,32,.19);
-      --amber-text: #805000;
-      --blue-tint: rgba(0,113,206,.1);
+      --bg: #f4f6f8;
+      --surface: rgba(255,255,255,.9);
+      --surface-strong: #fff;
+      --surface-muted: #f1f3f5;
+      --text: #14263d;
+      --muted: #667386;
+      --border: rgba(52,82,116,.16);
+      --grid: rgba(58,84,116,.11);
+      --shadow: 0 12px 32px rgba(15,38,67,.065);
+      --positive-bg: rgba(20,138,91,.11);
+      --positive-text: #0d6f49;
+      --amber-bg: rgba(255,194,32,.16);
+      --amber-text: #7a5200;
+      --blue-tint: rgba(0,113,206,.075);
       --card-radius: 18px;
     }
     html[data-theme="dark"] {
@@ -43,8 +43,9 @@
       --border: rgba(154,177,204,.18);
       --grid: rgba(174,191,212,.15);
       --shadow: 0 14px 36px rgba(0,0,0,.24);
-      --positive-bg: rgba(45,212,191,.14);
-      --positive-text: #79e4d7;
+      --positive-bg: rgba(74,222,128,.13);
+      --positive-text: #6ee7a8;
+      --teal: #4acb8a;
       --amber-bg: rgba(255,194,32,.15);
       --amber-text: #ffd67a;
       --blue-tint: rgba(56,158,244,.14);
@@ -147,7 +148,14 @@
     .chart-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; align-items:stretch; }
     .chart-card { padding:17px 18px 14px; min-width:0; position:relative; overflow:hidden; animation:rise-in .5s ease both; }
     .chart-card:nth-child(2n) { animation-delay:.04s; }
-    .chart-card.primary { border:1px solid rgba(0,113,206,.45); box-shadow:0 11px 34px rgba(0,113,206,.09),var(--shadow); }
+    .chart-card.primary {
+      grid-column: 1 / -1;
+      border: 1px solid rgba(0,113,206,.45);
+      box-shadow: 0 11px 34px rgba(0,113,206,.09), var(--shadow);
+    }
+    .chart-card.primary .chart-canvas {
+      height: 340px;
+    }
     .chart-card.has-inflection { border-left:3px solid #e5a000; }
     .chart-meta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:7px; margin-bottom:8px; }
     .chart-tags { display:flex; align-items:center; flex-wrap:wrap; gap:6px; }
@@ -193,15 +201,15 @@
     .team-card.member-c::before { background:linear-gradient(180deg,var(--teal),var(--purple)); }
     .team-card:hover { transform:translateY(-3px); border-color:rgba(0,113,206,.36); box-shadow:0 16px 34px rgba(15,38,67,.1); }
     .team-card .member { display:inline-flex; align-self:flex-start; align-items:center; border:1px solid var(--border); background:var(--blue-tint); color:var(--blue); border-radius:999px; padding:5px 9px; font-size:9px; letter-spacing:.075em; line-height:1.3; text-transform:uppercase; font-weight:850; }
-    .team-card.member-c .member { background:rgba(15,152,136,.1); color:var(--teal); }
+    .team-card.member-c .member { background:color-mix(in srgb,var(--teal) 10%,transparent); color:var(--teal); }
     .team-card h3 { margin:13px 0 12px; font-size:14px; letter-spacing:-.02em; line-height:1.35; min-height:2.65em; }
     .team-card p { font-size:11px; line-height:1.65; color:var(--muted); margin:0; overflow-wrap:anywhere; }
     .team-names { display:grid; gap:6px; margin:0 0 13px; }
     .team-name { display:flex; align-items:center; gap:9px; min-width:0; color:var(--text); font-size:12px; font-weight:800; line-height:1.4; overflow-wrap:anywhere; }
-    .team-avatar { width:32px; height:32px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; background:linear-gradient(145deg,rgba(0,113,206,.14),rgba(15,152,136,.18)); border:1px solid var(--border); color:var(--blue); font-size:10px; font-weight:900; letter-spacing:.02em; }
-    .team-card.member-c .team-avatar { background:linear-gradient(145deg,rgba(15,152,136,.15),rgba(112,101,240,.12)); color:var(--teal); }
+    .team-avatar { width:32px; height:32px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; background:linear-gradient(145deg,rgba(0,113,206,.14),color-mix(in srgb,var(--teal) 14%,transparent)); border:1px solid var(--border); color:var(--blue); font-size:10px; font-weight:900; letter-spacing:.02em; }
+    .team-card.member-c .team-avatar { background:linear-gradient(145deg,color-mix(in srgb,var(--teal) 12%,transparent),rgba(112,101,240,.12)); color:var(--teal); }
     .team-collab-note { display:flex; align-items:flex-start; gap:10px; margin-top:13px; padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:var(--surface-muted); color:var(--muted); font-size:10.5px; line-height:1.6; }
-    .team-collab-mark { display:grid; place-items:center; flex:0 0 25px; width:25px; height:25px; margin-top:1px; border-radius:8px; background:rgba(15,152,136,.13); color:var(--teal); font-size:13px; font-weight:900; }
+    .team-collab-mark { display:grid; place-items:center; flex:0 0 25px; width:25px; height:25px; margin-top:1px; border-radius:8px; background:color-mix(in srgb,var(--teal) 12%,transparent); color:var(--teal); font-size:13px; font-weight:900; }
     .team-collab-note strong { color:var(--text); }
     html[data-theme="dark"] .team-card.member-c .member { color:#79e4d7; border-color:rgba(121,228,215,.25); }
     html[data-theme="dark"] .team-card.member-c .team-avatar { color:#79e4d7; }
@@ -265,7 +273,7 @@
     /* Executive-grade interaction layer */
     :root { --focus-ring: #f59e0b; }
     .reading-progress { position:fixed; z-index:9998; top:0; left:0; width:100%; height:3px; background:transparent; pointer-events:none; }
-    .reading-progress span { display:block; height:100%; width:0; background:linear-gradient(90deg,#0f9888,#0071ce,#ffc220); box-shadow:0 0 12px rgba(0,113,206,.3); transition:width .08s linear; }
+    .reading-progress span { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--teal),#0071ce,#ffc220); box-shadow:0 0 12px rgba(0,113,206,.3); transition:width .08s linear; }
     .skip-link { position:fixed; z-index:9999; top:10px; left:10px; transform:translateY(-160%); padding:10px 14px; border-radius:9px; background:#041e42; color:#fff; font-weight:800; box-shadow:0 8px 28px rgba(0,0,0,.2); }
     .skip-link:focus { transform:translateY(0); }
     button:focus-visible, a:focus-visible, input:focus-visible { outline:3px solid var(--focus-ring); outline-offset:3px; }
@@ -304,7 +312,7 @@
     .timeline-heading { margin-top:27px; }
     .timeline-wrap { padding:18px; overflow:hidden; }
     .timeline-track { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; position:relative; }
-    .timeline-track::before { content:""; position:absolute; left:7%; right:7%; top:12px; height:1px; background:linear-gradient(90deg,rgba(15,152,136,.5),rgba(245,158,11,.65),rgba(0,113,206,.5)); }
+    .timeline-track::before { content:""; position:absolute; left:7%; right:7%; top:12px; height:1px; background:linear-gradient(90deg,color-mix(in srgb,var(--teal) 50%,transparent),rgba(245,158,11,.65),rgba(0,113,206,.5)); }
     .timeline-item { position:relative; padding:0 18px 2px 0; min-width:0; }
     .timeline-item:not(:first-child) { padding-left:18px; }
     .timeline-dot { position:relative; z-index:1; display:block; width:25px; height:25px; margin:0 0 13px; border:6px solid var(--surface-strong); outline:1px solid var(--border); border-radius:50%; background:var(--timeline-color,var(--blue)); box-shadow:0 0 0 4px var(--surface); }
@@ -339,9 +347,11 @@
       .chart-actions .badge { white-space:normal; }
       .filter-pills { max-width:100%; }
       .filter-pill { padding:6px 7px; }
+      .chart-card.primary { grid-column:auto; }
+      .chart-card.primary .chart-canvas { height:260px; }
       .timeline-wrap { padding:14px; }
       .timeline-track { grid-template-columns:1fr; gap:18px; }
-      .timeline-track::before { left:12px; right:auto; top:12px; bottom:15px; width:1px; height:auto; background:linear-gradient(180deg,rgba(15,152,136,.5),rgba(245,158,11,.65),rgba(0,113,206,.5)); }
+      .timeline-track::before { left:12px; right:auto; top:12px; bottom:15px; width:1px; height:auto; background:linear-gradient(180deg,color-mix(in srgb,var(--teal) 50%,transparent),rgba(245,158,11,.65),rgba(0,113,206,.5)); }
       .timeline-item, .timeline-item:not(:first-child) { padding:0 0 0 42px; }
       .timeline-dot { position:absolute; left:0; top:0; margin:0; }
       .timeline-change { font-size:17px; }
@@ -654,10 +664,10 @@
     };
 
     const charts = {};
-    const chartColors = { blue: "#0071ce", navy: "#041e42", teal: "#0f9888", yellow: "#ffc220", purple: "#7065f0", slate: "#8b9bb0", amber: "#f59e0b" };
+    const chartColors = { blue: "#0071ce", navy: "#041e42", teal: "#148a5b", yellow: "#ffc220", purple: "#7065f0", slate: "#78879a", amber: "#f59e0b" };
 
     function themeTextColor() { return document.documentElement.dataset.theme === "dark" ? "#dce7f4" : "#334155"; }
-    function themeGridColor() { return document.documentElement.dataset.theme === "dark" ? "rgba(174,191,212,.15)" : "rgba(100,116,139,.15)"; }
+    function themeGridColor() { return document.documentElement.dataset.theme === "dark" ? "rgba(174,191,212,.15)" : "rgba(71,85,105,.13)"; }
     function baseChartOptions() {
       const text = themeTextColor();
       const grid = themeGridColor();
@@ -709,7 +719,7 @@
         const o = cloneBase(); o.scales.y.min = 0; o.scales.y.max = 30; o.scales.y.ticks.callback = v => "~" + v + "%";
         o.plugins.tooltip.callbacks = { label:ctx => ` YoY growth: ~${ctx.parsed.y.toFixed(1)}%` };
         o.plugins.annotation = { annotations: { fy24:{ type:"line", xMin:"FY2024", xMax:"FY2024", borderColor:chartColors.amber, borderWidth:2, borderDash:[5,4], label:{ display:true, content:["FY2024: ~12.2% → ~21.9%","Pickup & delivery adoption"], position:"start", backgroundColor:"rgba(255,194,32,.95)", color:"#4b3300", borderRadius:5, font:{size:9,weight:"bold"}, padding:5, yAdjust:8 } } } };
-        make("chart2", { type:"line", data:{ labels:d.annualLabels, datasets:[{ label:"Global eCommerce growth (~%)", data:d.metrics[1].values, borderColor:chartColors.teal, backgroundColor:"rgba(15,152,136,.14)", borderWidth:3, pointRadius:[5,8,5,6], pointHoverRadius:9, pointBackgroundColor:[chartColors.teal,chartColors.amber,chartColors.teal,chartColors.teal], pointBorderColor:"#ffffff", fill:true, tension:.25 }]}, options:o });
+        make("chart2", { type:"line", data:{ labels:d.annualLabels, datasets:[{ label:"Global eCommerce growth (~%)", data:d.metrics[1].values, borderColor:chartColors.teal, backgroundColor:"rgba(20,138,91,.11)", borderWidth:3, pointRadius:[5,8,5,6], pointHoverRadius:9, pointBackgroundColor:[chartColors.teal,chartColors.amber,chartColors.teal,chartColors.teal], pointBorderColor:"#ffffff", fill:true, tension:.25 }]}, options:o });
       }
       {
         const o = cloneBase(); o.scales.y.min = 0; o.scales.y.max = 55; o.scales.y.ticks.callback = v => v + "%";
@@ -732,7 +742,7 @@
         o.plugins.tooltip.callbacks = { label:ctx => ctx.dataset.yAxisID === "y1" ? ` CapEx / revenue: ${ctx.parsed.y.toFixed(2)}%` : ` CapEx: $${ctx.parsed.y.toFixed(3)}B` };
         make("chart5", { type:"bar", data:{ labels:d.annualLabels, datasets:[
           { type:"bar", label:"Capital expenditures ($B)", data:d.denominators.capexB, backgroundColor:"rgba(0,113,206,.67)", borderColor:chartColors.blue, borderWidth:1, borderRadius:5, yAxisID:"y", order:2 },
-          { type:"line", label:"CapEx as % of revenue", data:d.metrics[4].values, borderColor:chartColors.teal, backgroundColor:"rgba(15,152,136,.12)", borderWidth:3, pointRadius:5, pointBackgroundColor:chartColors.teal, tension:.25, yAxisID:"y1", order:1 }
+          { type:"line", label:"CapEx as % of revenue", data:d.metrics[4].values, borderColor:chartColors.teal, backgroundColor:"rgba(20,138,91,.1)", borderWidth:3, pointRadius:5, pointBackgroundColor:chartColors.teal, tension:.25, yAxisID:"y1", order:1 }
         ]}, options:o });
       }
       {
@@ -753,7 +763,7 @@
           totalComp:{ type:"line", yMin:d.denominators.totalUSCompQ4FY2026Bps, yMax:d.denominators.totalUSCompQ4FY2026Bps, borderColor:"#8b9bb0", borderWidth:1.5, borderDash:[3,3], label:{ display:true, content:"Total U.S. comp growth: 460 bps", position:"start", backgroundColor:"rgba(148,163,184,.9)", color:"#172033", font:{size:9,weight:"600"}, padding:4 } }
         } };
         make("chart8", { type:"line", data:{ labels:d.q4Labels, datasets:[
-          { label:"eCommerce contribution to U.S. comp sales (~bps)", data:d.metrics[7].values, borderColor:chartColors.teal, backgroundColor:"rgba(15,152,136,.14)", borderWidth:3, pointBackgroundColor:[chartColors.teal,chartColors.teal,chartColors.teal,chartColors.amber], pointBorderColor:["#fff","#fff","#fff","#92400e"], pointRadius:[5,5,5,8], pointHoverRadius:9, fill:true, tension:.25 }
+          { label:"eCommerce contribution to U.S. comp sales (~bps)", data:d.metrics[7].values, borderColor:chartColors.teal, backgroundColor:"rgba(20,138,91,.11)", borderWidth:3, pointBackgroundColor:[chartColors.teal,chartColors.teal,chartColors.teal,chartColors.amber], pointBorderColor:["#fff","#fff","#fff","#92400e"], pointRadius:[5,5,5,8], pointHoverRadius:9, fill:true, tension:.25 }
         ]}, options:o });
       }
     }
@@ -813,7 +823,7 @@
     }
     function renderInflectionTimeline() {
       const d = WALMART_DASHBOARD_DATA;
-      const tones = { 2: "#0f9888", 3: "#d89000", 8: "#0071ce" };
+      const tones = { 2: "var(--teal)", 3: "#d89000", 8: "#0071ce" };
       document.getElementById("inflectionTimeline").innerHTML = d.inflections.map((item, index) => {
         const metric = d.metrics.find(m => m.id === item.metricId);
         return `<article class="timeline-item" style="--timeline-color:${tones[item.metricId] || "#0071ce"}">
@@ -835,7 +845,7 @@
       const productivity = d.metrics.find(m => m.id === 7);
       const cards = [
         { tone:"#d89000", kicker:"Growth quality", question:"How much of advertising growth is organic after separating the VIZIO contribution?", copy:"FY2026’s reported acceleration is strategically important, but the acquisition caveat means it should not be treated as a clean read of underlying ad-platform momentum.", evidence:`${ads.displayValues[2]} in FY2025 → ${ads.displayValues[3]} in FY2026 · Sources ${ads.sources}` },
-        { tone:"#0f9888", kicker:"Digital economics", question:"Can the business keep scaling digital demand while protecting overall margin?", copy:"Revenue mix is moving toward eCommerce, while gross profit rate is a useful guardrail—not proof that digital fulfillment itself is more profitable.", evidence:`eCommerce mix ${ecommerce.displayValues[0]} → ${ecommerce.displayValues[3]} · Gross profit ${margin.displayValues[0]} → ${margin.displayValues[3]}` },
+        { tone:"var(--teal)", kicker:"Digital economics", question:"Can the business keep scaling digital demand while protecting overall margin?", copy:"Revenue mix is moving toward eCommerce, while gross profit rate is a useful guardrail—not proof that digital fulfillment itself is more profitable.", evidence:`eCommerce mix ${ecommerce.displayValues[0]} → ${ecommerce.displayValues[3]} · Gross profit ${margin.displayValues[0]} → ${margin.displayValues[3]}` },
         { tone:"#7065f0", kicker:"Investment productivity", question:"What evidence links higher investment intensity to measurable productivity gains?", copy:"CapEx is a broad proxy that includes stores and supply chain assets; revenue per associate is directional and based on a rounded headcount, so neither isolates digital ROI.", evidence:`CapEx intensity ${capex.displayValues[3]} · Revenue per associate ${productivity.displayValues[3]}` }
       ];
       document.getElementById("decisionQuestions").innerHTML = cards.map((item,index) => `<article class="glass decision-card" style="--decision-color:${item.tone}">
@@ -930,10 +940,21 @@
     function toggleTheme() {
       const dark = document.documentElement.dataset.theme !== "dark";
       document.documentElement.dataset.theme = dark ? "dark" : "light";
+      const previousTeal = chartColors.teal;
+      chartColors.teal = dark ? "#4acb8a" : "#148a5b";
       document.getElementById("themeToggle").setAttribute("aria-pressed",String(dark));
       document.getElementById("themeLabel").textContent = dark ? "Light mode" : "Dark mode";
       Object.values(charts).forEach(chart => {
         if (!chart) return;
+        chart.data.datasets.forEach(dataset => {
+          const usesTeal = dataset.borderColor === previousTeal;
+          if (usesTeal) {
+            dataset.borderColor = chartColors.teal;
+            dataset.backgroundColor = dark ? "rgba(74,203,138,.13)" : "rgba(20,138,91,.11)";
+          }
+          if (dataset.pointBackgroundColor === previousTeal) dataset.pointBackgroundColor = chartColors.teal;
+          else if (Array.isArray(dataset.pointBackgroundColor)) dataset.pointBackgroundColor = dataset.pointBackgroundColor.map(color => color === previousTeal ? chartColors.teal : color);
+        });
         const text = themeTextColor(), grid = themeGridColor();
         if (chart.options.plugins.legend) chart.options.plugins.legend.labels.color = text;
         for (const axis of Object.values(chart.options.scales || {})) {

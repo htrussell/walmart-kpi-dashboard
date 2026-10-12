@@ -77,8 +77,10 @@
     .hero-utility { display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:36px; }
     .eyebrow { color:rgba(217,232,248,.78); text-transform:uppercase; letter-spacing:.14em; font-size:9px; font-weight:750; }
     .hero-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:7px; }
-    .control-btn { min-height:35px; display:inline-flex; align-items:center; justify-content:center; gap:7px; border:1px solid rgba(255,255,255,.2); color:rgba(255,255,255,.96); background:rgba(15,91,151,.34); padding:6px 10px; border-radius:9px; font-size:11px; cursor:pointer; white-space:nowrap; transition:background .16s ease, border-color .16s ease; }
-    .control-btn:hover { background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.38); }
+    .control-btn { min-height:35px; display:inline-flex; align-items:center; justify-content:center; gap:7px; border:1px solid rgba(190,225,255,.42); color:#fff; background:rgba(0,113,206,.34); padding:6px 10px; border-radius:9px; font-size:11px; cursor:pointer; white-space:nowrap; box-shadow:0 0 12px rgba(0,113,206,.16),inset 0 1px rgba(255,255,255,.14); transition:transform .16s ease,background .16s ease,border-color .16s ease,box-shadow .16s ease; }
+    .control-btn:hover { transform:translateY(-1px); background:rgba(0,126,224,.43); border-color:rgba(211,237,255,.62); box-shadow:0 0 17px rgba(0,130,230,.25),0 3px 9px rgba(0,18,48,.16),inset 0 1px rgba(255,255,255,.19); }
+    .control-btn:active { transform:translateY(.5px); background:rgba(0,105,193,.38); box-shadow:0 0 9px rgba(0,113,206,.15),inset 0 1px rgba(255,255,255,.12); }
+    .control-btn:focus-visible { outline:2px solid var(--yellow); outline-offset:2px; }
     .hero-content { display:grid; grid-template-columns:48% 52%; align-items:center; margin-top:12px; }
     .brand { display:flex; align-items:center; gap:13px; min-width:0; padding-right:26px; }
     .spark { display:grid; place-items:center; flex:0 0 42px; width:42px; height:42px; border-radius:12px; background:var(--yellow); color:var(--navy); font-size:24px; font-weight:900; }

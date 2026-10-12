@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Walmart | Digital Transformation KPI Dashboard FY2023–FY2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --blue: #0071ce;
+      --blue-dark: #004c91;
+      --navy: #041e42;
+      --yellow: #ffc220;
+      --teal: #0f9888;
+      --purple: #7065f0;
+      --bg: #eff4f9;
+      --surface: rgba(255,255,255,.79);
+      --surface-strong: rgba(255,255,255,.94);
+      --surface-muted: rgba(241,246,251,.83);
+      --text: #18283b;
+      --muted: #5d6d80;
+      --border: rgba(122,145,168,.24);
+      --grid: rgba(100,116,139,.15);
+      --shadow: 0 12px 32px rgba(15,38,67,.075);
+      --positive-bg: rgba(13,148,136,.13);
+      --positive-text: #0a786d;
+      --amber-bg: rgba(255,194,32,.19);
+      --amber-text: #805000;
+      --blue-tint: rgba(0,113,206,.1);
+      --card-radius: 18px;
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0b1220;
+      --surface: rgba(21,32,51,.78);
+      --surface-strong: rgba(21,32,51,.95);
+      --surface-muted: rgba(28,42,64,.82);
+      --text: #e7eef8;
+      --muted: #a7b5c8;
+      --border: rgba(154,177,204,.18);
+      --grid: rgba(174,191,212,.15);
+      --shadow: 0 14px 36px rgba(0,0,0,.24);
+      --positive-bg: rgba(45,212,191,.14);
+      --positive-text: #79e4d7;
+      --amber-bg: rgba(255,194,32,.15);
+      --amber-text: #ffd67a;
+      --blue-tint: rgba(56,158,244,.14);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font: 14px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 8% 0%, rgba(0,113,206,.11), transparent 32rem),
+        radial-gradient(ellipse at 92% 11%, rgba(255,194,32,.13), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background-color .25s ease, color .25s ease;
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    a { color: var(--blue); }
+    .shell { width: min(1540px, calc(100% - 40px)); margin: 0 auto; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 30px 0 26px;
+      color: #fff;
+      background: linear-gradient(118deg, #041e42 0%, #004c91 54%, #0071ce 100%);
+      border-bottom: 4px solid var(--yellow);
+      box-shadow: 0 12px 34px rgba(4,30,66,.21);
+      isolation: isolate;
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none;
+      border: 1px solid rgba(255,255,255,.17); background: rgba(255,255,255,.055);
+      animation: float-glow 11s ease-in-out infinite alternate;
+    }
+    .hero::before { width: 380px; height: 380px; right: 5%; top: -240px; }
+    .hero::after { width: 250px; height: 250px; right: 20%; bottom: -220px; animation-delay: -4s; }
+    .hero-top { display:flex; align-items:flex-start; justify-content:space-between; gap:28px; }
+    .brand { display:flex; align-items:flex-start; gap:14px; min-width:0; }
+    .spark { display:grid; place-items:center; flex:0 0 48px; width:48px; height:48px; border-radius:14px; background:var(--yellow); color:var(--navy); font-size:27px; font-weight:900; box-shadow:0 5px 18px rgba(0,0,0,.2); }
+    h1 { font-size:clamp(23px,2.1vw,32px); letter-spacing:-.04em; line-height:1.14; margin:0; max-width:860px; }
+    .eyebrow { color:#b9d9f8; text-transform:uppercase; letter-spacing:.13em; font-size:10px; font-weight:800; margin-bottom:8px; }
+    .subtitle { margin-top:8px; color:#d9e8f8; font-size:13px; }
+    .hero-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:8px; }
+    .control-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:1px solid rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.11); padding:9px 12px; border-radius:999px; cursor:pointer; white-space:nowrap; backdrop-filter:blur(12px); transition:transform .16s ease, background .16s ease, border-color .16s ease; }
+    .control-btn:hover { background:rgba(255,255,255,.2); transform:translateY(-1px); }
+    .thesis { margin-top:23px; padding:14px 17px; border:1px solid rgba(255,255,255,.19); border-left:4px solid var(--yellow); border-radius:0 14px 14px 0; background:rgba(255,255,255,.105); backdrop-filter:blur(14px); line-height:1.55; color:#f1f6fd; }
+    .thesis strong { display:block; color:var(--yellow); font-size:10px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:3px; }
+    .hero-stats { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+    .hero-stat { font-size:11px; font-weight:700; padding:5px 10px; color:#eaf4ff; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.075); }
+    .hero-stat b { color:var(--yellow); }
+    main { padding:22px 0 42px; }
+    .toolbar { display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:17px; }
+    .tabs { display:flex; flex-wrap:wrap; gap:6px; padding:5px; border:1px solid var(--border); border-radius:15px; background:var(--surface); box-shadow:var(--shadow); backdrop-filter:blur(16px); }
+    .tab { appearance:none; border:0; background:transparent; color:var(--muted); font-weight:750; font-size:12px; cursor:pointer; padding:10px 14px; border-radius:10px; transition:background .18s ease,color .18s ease,transform .18s ease; }
+    .tab:hover { color:var(--text); }
+    .tab[aria-selected="true"] { color:#fff; background:linear-gradient(115deg,var(--blue-dark),var(--blue)); box-shadow:0 5px 15px rgba(0,113,206,.22); }
+    .view-hint { color:var(--muted); font-size:11px; }
+    .panel[hidden] { display:none !important; }
+    .panel { animation: panel-in .32s ease both; }
+    .section-head { display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin:22px 0 12px; }
+    .section-head:first-child { margin-top:0; }
+    .section-head h2 { margin:0; color:var(--text); font-size:18px; letter-spacing:-.025em; line-height:1.25; }
+    .section-head p { color:var(--muted); margin:4px 0 0; font-size:11px; }
+    .micro-label { color:var(--muted); font-size:10px; text-align:right; }
+    .glass { background:var(--surface); border:1px solid var(--border); border-radius:var(--card-radius); box-shadow:var(--shadow); backdrop-filter:blur(18px); }
+    .kpi-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+    .kpi-card { position:relative; overflow:hidden; padding:14px 15px 12px; min-height:120px; animation:rise-in .45s ease both; }
+    .kpi-card::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--blue); }
+    .kpi-card.leading::before { background:var(--teal); }
+    .kpi-card.inflection { background:linear-gradient(135deg,var(--amber-bg),var(--surface)); }
+    .kpi-top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .metric-id { font-size:10px; font-weight:850; color:var(--muted); letter-spacing:.08em; }
+    .badge { display:inline-flex; align-items:center; gap:5px; width:max-content; font-size:9px; text-transform:uppercase; letter-spacing:.055em; font-weight:850; padding:3px 6px; border-radius:6px; white-space:nowrap; }
+    .badge.leading { color:var(--positive-text); background:var(--positive-bg); }
+    .badge.lagging { color:var(--blue); background:var(--blue-tint); }
+    html[data-theme="dark"] .badge.lagging { color:#8ccfff; }
+    .badge.flag { color:var(--amber-text); background:var(--amber-bg); }
+    .kpi-name { font-size:12px; font-weight:760; line-height:1.3; margin:9px 0 7px; min-height:31px; }
+    .kpi-values { display:flex; align-items:baseline; justify-content:space-between; gap:6px; }
+    .kpi-current { font-size:23px; letter-spacing:-.04em; font-weight:850; line-height:1.05; }
+    .kpi-delta { color:var(--positive-text); background:var(--positive-bg); border-radius:7px; padding:3px 6px; font-size:10px; font-weight:800; text-align:right; }
+    .kpi-base { margin-top:9px; padding-top:7px; border-top:1px dashed var(--border); display:flex; justify-content:space-between; gap:8px; color:var(--muted); font-size:10px; }
+    .kpi-delta.neutral { color:var(--text); background:var(--surface-muted); border:1px solid var(--border); }
+    .kpi-delta.caveat { color:var(--amber-text); background:var(--amber-bg); border:1px solid rgba(229,160,0,.25); }
+    .insight-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:11px; margin:0 0 22px; }
+    .insight-card { --insight-accent:var(--blue); position:relative; overflow:hidden; padding:16px 16px 14px; min-width:0; min-height:184px; border-top:3px solid var(--insight-accent); transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+    .insight-card::after { content:""; position:absolute; width:116px; height:116px; right:-48px; top:-48px; border-radius:50%; background:var(--insight-accent); opacity:.075; pointer-events:none; }
+    .insight-card:hover { transform:translateY(-2px); box-shadow:0 15px 34px rgba(15,38,67,.11); }
+    .insight-card.teal { --insight-accent:var(--teal); }
+    .insight-card.amber { --insight-accent:#d89000; }
+    .insight-card.purple { --insight-accent:var(--purple); }
+    .insight-kicker { display:flex; align-items:center; gap:7px; color:var(--muted); text-transform:uppercase; letter-spacing:.09em; font-weight:850; font-size:9px; }
+    .insight-index { display:inline-grid; place-items:center; width:22px; height:22px; border:1px solid var(--border); color:var(--insight-accent); border-radius:7px; font-size:10px; letter-spacing:0; background:var(--surface-muted); }
+    .insight-value { margin-top:12px; color:var(--text); font-size:clamp(23px,2vw,31px); font-weight:880; letter-spacing:-.045em; line-height:1; font-variant-numeric:tabular-nums; }
+    .insight-title { margin-top:7px; font-size:11px; font-weight:820; line-height:1.35; color:var(--text); }
+    .insight-copy { margin:7px 0 0; color:var(--muted); font-size:10px; line-height:1.5; }
+    .insight-copy strong { color:var(--text); }
+    .chart-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; align-items:stretch; }
+    .chart-card { padding:17px 18px 14px; min-width:0; position:relative; overflow:hidden; animation:rise-in .5s ease both; }
+    .chart-card:nth-child(2n) { animation-delay:.04s; }
+    .chart-card.primary { border:1px solid rgba(0,113,206,.45); box-shadow:0 11px 34px rgba(0,113,206,.09),var(--shadow); }
+    .chart-card.has-inflection { border-left:3px solid #e5a000; }
+    .chart-meta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:7px; margin-bottom:8px; }
+    .chart-tags { display:flex; align-items:center; flex-wrap:wrap; gap:6px; }
+    .dimension { color:var(--muted); background:var(--surface-muted); border:1px solid var(--border); border-radius:6px; font-size:9px; padding:3px 7px; }
+    .chart-title { font-size:14px; line-height:1.3; letter-spacing:-.015em; font-weight:820; margin:0; }
+    .chart-subtitle { color:var(--muted); margin:4px 0 0; font-size:11px; line-height:1.4; }
+    .chart-canvas { position:relative; height:260px; margin:10px -2px 0; }
+    .annotation { margin-top:9px; border:1px solid rgba(229,160,0,.32); border-left:3px solid #e5a000; background:var(--amber-bg); border-radius:9px; padding:9px 11px; font-size:10.5px; line-height:1.5; }
+    .annotation strong { color:var(--amber-text); }
+    .chart-note { display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px; margin-top:9px; border-top:1px solid var(--border); padding-top:7px; font-size:9.5px; color:var(--muted); }
+    .legend-key { display:inline-block; width:7px; height:7px; border-radius:2px; margin-right:5px; background:var(--teal); }
+    .data-card { overflow:hidden; }
+    .table-topline { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:16px 18px; border-bottom:1px solid var(--border); flex-wrap:wrap; }
+    .table-topline h3 { margin:0; font-size:14px; }
+    .table-topline p { margin:3px 0 0; color:var(--muted); font-size:10px; }
+    .table-wrap { width:100%; overflow:auto; }
+    table { border-collapse:collapse; width:100%; font-size:11px; }
+    thead { background:linear-gradient(110deg,var(--navy),var(--blue-dark)); color:#fff; }
+    th { text-align:left; font-size:10px; letter-spacing:.02em; padding:11px 10px; white-space:nowrap; }
+    td { vertical-align:top; padding:11px 10px; border-bottom:1px solid var(--border); }
+    tbody tr:nth-child(even) { background:var(--surface-muted); }
+    tbody tr:hover { background:var(--blue-tint); }
+    .numeric { font-variant-numeric:tabular-nums; white-space:nowrap; }
+    .metric-cell { min-width:190px; font-weight:800; }
+    .subcell { display:block; color:var(--muted); font-weight:500; font-size:9.5px; margin-top:4px; }
+    .table-foot { padding:12px 16px; font-size:10px; color:var(--muted); }
+    .note-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:14px; }
+    .note-card { padding:15px 16px; }
+    .note-card h3 { margin:0 0 6px; font-size:12px; }
+    .note-card p { margin:0; color:var(--muted); font-size:11px; line-height:1.55; }
+    .narrative-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:15px; align-items:start; }
+    .narrative-card { padding:20px 21px; }
+    .narrative-card h3 { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 12px; padding-bottom:10px; border-bottom:1px solid var(--border); font-size:15px; }
+    .narrative-card p { font-size:12px; line-height:1.68; color:var(--text); margin:0 0 12px; }
+    .narrative-card p:last-child { margin-bottom:0; }
+    .rationale-list { list-style:none; padding:0; margin:0; display:grid; gap:9px; }
+    .rationale-list li { border-left:3px solid var(--blue); padding:8px 10px; background:var(--surface-muted); border-radius:0 8px 8px 0; font-size:11px; line-height:1.55; }
+    .rationale-list li.leading-item { border-left-color:var(--teal); }
+    .rationale-list strong { font-size:11px; }
+    .team-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; align-items:stretch; }
+    .team-card { padding:19px; position:relative; overflow:hidden; display:flex; flex-direction:column; min-width:0; min-height:252px; transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
+    .team-card::before { content:""; position:absolute; inset:0 auto 0 0; width:3px; background:linear-gradient(180deg,var(--blue),var(--teal)); opacity:.95; }
+    .team-card.member-c::before { background:linear-gradient(180deg,var(--teal),var(--purple)); }
+    .team-card:hover { transform:translateY(-3px); border-color:rgba(0,113,206,.36); box-shadow:0 16px 34px rgba(15,38,67,.1); }
+    .team-card .member { display:inline-flex; align-self:flex-start; align-items:center; border:1px solid var(--border); background:var(--blue-tint); color:var(--blue); border-radius:999px; padding:5px 9px; font-size:9px; letter-spacing:.075em; line-height:1.3; text-transform:uppercase; font-weight:850; }
+    .team-card.member-c .member { background:rgba(15,152,136,.1); color:var(--teal); }
+    .team-card h3 { margin:13px 0 12px; font-size:14px; letter-spacing:-.02em; line-height:1.35; min-height:2.65em; }
+    .team-card p { font-size:11px; line-height:1.65; color:var(--muted); margin:0; overflow-wrap:anywhere; }
+    .team-names { display:grid; gap:6px; margin:0 0 13px; }
+    .team-name { display:flex; align-items:center; gap:9px; min-width:0; color:var(--text); font-size:12px; font-weight:800; line-height:1.4; overflow-wrap:anywhere; }
+    .team-avatar { width:32px; height:32px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; background:linear-gradient(145deg,rgba(0,113,206,.14),rgba(15,152,136,.18)); border:1px solid var(--border); color:var(--blue); font-size:10px; font-weight:900; letter-spacing:.02em; }
+    .team-card.member-c .team-avatar { background:linear-gradient(145deg,rgba(15,152,136,.15),rgba(112,101,240,.12)); color:var(--teal); }
+    .team-collab-note { display:flex; align-items:flex-start; gap:10px; margin-top:13px; padding:12px 14px; border:1px solid var(--border); border-radius:12px; background:var(--surface-muted); color:var(--muted); font-size:10.5px; line-height:1.6; }
+    .team-collab-mark { display:grid; place-items:center; flex:0 0 25px; width:25px; height:25px; margin-top:1px; border-radius:8px; background:rgba(15,152,136,.13); color:var(--teal); font-size:13px; font-weight:900; }
+    .team-collab-note strong { color:var(--text); }
+    html[data-theme="dark"] .team-card.member-c .member { color:#79e4d7; border-color:rgba(121,228,215,.25); }
+    html[data-theme="dark"] .team-card.member-c .team-avatar { color:#79e4d7; }
+    @media (max-width:1250px) and (min-width:1051px) { .team-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .team-card { min-height:220px; } }
+    .source-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding:15px; }
+    .source-item { padding:12px; border:1px solid var(--border); background:var(--surface-muted); border-radius:11px; min-width:0; transition:transform .18s ease,border-color .18s ease; }
+    .source-item:hover { transform:translateY(-2px); border-color:rgba(0,113,206,.4); }
+    .source-item .source-id { color:var(--yellow); background:var(--navy); font-size:10px; font-weight:900; padding:3px 6px; border-radius:5px; }
+    .source-item h4 { margin:9px 0 4px; font-size:11px; line-height:1.4; }
+    .source-item p { margin:0; color:var(--muted); font-size:10px; line-height:1.45; }
+    .source-item a { display:inline-block; margin-top:9px; font-size:10px; font-weight:750; text-decoration:none; word-break:break-word; }
+    .source-item a:hover { text-decoration:underline; }
+    .source-disclaimer { margin:0 15px 15px; font-size:10px; color:var(--muted); line-height:1.55; }
+    .footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; color:var(--muted); border-top:1px solid var(--border); padding:15px 2px 0; margin-top:24px; font-size:10px; }
+    .footer b { color:var(--text); }
+    .all-mode .panel { margin-bottom:25px; }
+    .notice { display:none; border-radius:12px; padding:12px 14px; margin:10px 0; border:1px solid rgba(220,38,38,.25); color:var(--text); background:rgba(220,38,38,.08); }
+    .notice.visible { display:block; }
+    @keyframes panel-in { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes rise-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes float-glow { from { transform:translate3d(0,0,0) scale(1); } to { transform:translate3d(12px,-11px,0) scale(1.04); } }
+    @media (min-width:1500px) { .chart-canvas { height:275px; } }
+    @media (max-width:1050px) {
+      .shell { width:min(100% - 28px,1540px); }
+      .hero-top { flex-direction:column; }
+      .hero-actions { justify-content:flex-start; }
+      .source-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .narrative-grid { grid-template-columns:1fr; }
+      .team-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .team-card { min-height:220px; }
+      .kpi-strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width:720px) {
+      .shell { width:calc(100% - 22px); }
+      .hero { padding:22px 0; }
+      .spark { flex-basis:39px; width:39px; height:39px; font-size:22px; }
+      .brand { gap:10px; }
+      .hero-actions { width:100%; }
+      .control-btn { font-size:11px; padding:8px 10px; }
+      .tabs { width:100%; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .tab { padding:9px 8px; }
+      .chart-grid, .note-grid, .team-grid { grid-template-columns:1fr; }
+      .team-card { min-height:0; padding:17px; }
+      .team-card h3 { min-height:0; }
+      .chart-canvas { height:235px; }
+      .kpi-strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .source-grid { grid-template-columns:1fr; }
+      .section-head { align-items:flex-start; flex-direction:column; }
+      .micro-label { text-align:left; }
+      .narrative-card { padding:16px; }
+      .kpi-current { font-size:20px; }
+    }
+    @media (max-width:1050px) {
+      .insight-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width:540px) {
+      .insight-grid { grid-template-columns:1fr; }
+      .insight-card { min-height:unset; }
+    }
+    @media (max-width:390px) { .kpi-strip { grid-template-columns:1fr; } .kpi-card { min-height:unset; } }
+    /* Executive-grade interaction layer */
+    :root { --focus-ring: #f59e0b; }
+    .reading-progress { position:fixed; z-index:9998; top:0; left:0; width:100%; height:3px; background:transparent; pointer-events:none; }
+    .reading-progress span { display:block; height:100%; width:0; background:linear-gradient(90deg,#0f9888,#0071ce,#ffc220); box-shadow:0 0 12px rgba(0,113,206,.3); transition:width .08s linear; }
+    .skip-link { position:fixed; z-index:9999; top:10px; left:10px; transform:translateY(-160%); padding:10px 14px; border-radius:9px; background:#041e42; color:#fff; font-weight:800; box-shadow:0 8px 28px rgba(0,0,0,.2); }
+    .skip-link:focus { transform:translateY(0); }
+    button:focus-visible, a:focus-visible, input:focus-visible { outline:3px solid var(--focus-ring); outline-offset:3px; }
+    .toolbar { position:sticky; top:0; z-index:40; padding:9px 0; background:color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:border-color .2s ease, box-shadow .2s ease; }
+    .toolbar.is-scrolled { border-bottom-color:var(--border); box-shadow:0 9px 24px rgba(10,30,60,.06); }
+    .tabs { flex:0 1 auto; }
+    .view-hint { max-width:330px; text-align:right; }
+    .chart-explorer { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:13px 15px; margin:0 0 13px; }
+    .explorer-intro { display:flex; flex-direction:column; gap:2px; min-width:180px; }
+    .explorer-overline { color:var(--blue); font-size:9px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+    .explorer-intro strong { font-size:12px; letter-spacing:-.015em; }
+    .explorer-intro span:last-child { color:var(--muted); font-size:10px; }
+    .explorer-controls { display:flex; justify-content:flex-end; align-items:center; gap:8px; flex-wrap:wrap; }
+    .search-field { display:flex; align-items:center; gap:8px; padding:0 10px; min-width:205px; height:36px; border:1px solid var(--border); border-radius:10px; background:var(--surface-strong); }
+    .search-field svg { width:15px; height:15px; fill:none; stroke:var(--muted); stroke-width:1.8; flex:none; }
+    .search-field input { width:100%; min-width:0; border:0; outline:0; color:var(--text); background:transparent; font:inherit; font-size:11px; }
+    .search-field input:focus-visible { outline:none; }
+    .search-field:focus-within { border-color:var(--blue); box-shadow:0 0 0 3px var(--blue-tint); }
+    .filter-pills { display:flex; gap:3px; padding:3px; background:var(--surface-muted); border:1px solid var(--border); border-radius:11px; }
+    .filter-pill, .quiet-action, .secondary-action, .mini-action { cursor:pointer; transition:background .16s ease, color .16s ease, border-color .16s ease, transform .16s ease; }
+    .filter-pill { border:1px solid transparent; border-radius:8px; padding:6px 8px; color:var(--muted); background:transparent; font-size:10px; font-weight:800; white-space:nowrap; }
+    .filter-pill span { display:inline-grid; place-items:center; min-width:16px; height:16px; margin-left:2px; border-radius:5px; color:inherit; background:rgba(127,145,165,.15); font-size:9px; }
+    .filter-pill[aria-pressed="true"] { color:#fff; background:linear-gradient(120deg,var(--blue-dark),var(--blue)); box-shadow:0 3px 9px rgba(0,113,206,.19); }
+    .quiet-action { border:0; background:transparent; color:var(--muted); font-size:10px; font-weight:800; padding:7px; }
+    .quiet-action:hover { color:var(--blue); }
+    .chart-actions { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:5px; }
+    .mini-action { border:1px solid var(--border); border-radius:7px; padding:4px 7px; color:var(--muted); background:var(--surface-muted); font-size:9px; font-weight:850; white-space:nowrap; }
+    .mini-action:hover { color:var(--blue); border-color:rgba(0,113,206,.4); background:var(--blue-tint); }
+    .mini-action[aria-pressed="true"] { background:var(--blue); border-color:var(--blue); color:#fff; }
+    .chart-card { transition:grid-column .2s ease, box-shadow .2s ease, transform .2s ease; scroll-margin-top:92px; }
+    .chart-card.expanded { grid-column:1 / -1; border-color:rgba(0,113,206,.55); box-shadow:0 16px 40px rgba(0,113,206,.13),var(--shadow); }
+    .chart-card.expanded .chart-canvas { height:410px; }
+    .chart-card.filtered-out { display:none !important; }
+    .chart-card:hover { box-shadow:0 13px 35px rgba(15,38,67,.10),var(--shadow); }
+    .chart-card.primary:hover { box-shadow:0 15px 38px rgba(0,113,206,.12),var(--shadow); }
+    .timeline-heading { margin-top:27px; }
+    .timeline-wrap { padding:18px; overflow:hidden; }
+    .timeline-track { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; position:relative; }
+    .timeline-track::before { content:""; position:absolute; left:7%; right:7%; top:12px; height:1px; background:linear-gradient(90deg,rgba(15,152,136,.5),rgba(245,158,11,.65),rgba(0,113,206,.5)); }
+    .timeline-item { position:relative; padding:0 18px 2px 0; min-width:0; }
+    .timeline-item:not(:first-child) { padding-left:18px; }
+    .timeline-dot { position:relative; z-index:1; display:block; width:25px; height:25px; margin:0 0 13px; border:6px solid var(--surface-strong); outline:1px solid var(--border); border-radius:50%; background:var(--timeline-color,var(--blue)); box-shadow:0 0 0 4px var(--surface); }
+    .timeline-period { color:var(--timeline-color,var(--blue)); font-size:10px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+    .timeline-change { margin:6px 0 7px; color:var(--text); font-size:18px; line-height:1.15; font-weight:880; letter-spacing:-.035em; font-variant-numeric:tabular-nums; }
+    .timeline-metric { margin:0 0 8px; font-size:11px; font-weight:800; line-height:1.35; }
+    .timeline-cause { margin:0; color:var(--muted); font-size:10px; line-height:1.55; }
+    .timeline-item .timeline-tag { display:inline-flex; margin-top:11px; border:1px solid var(--border); border-radius:6px; padding:3px 6px; color:var(--muted); background:var(--surface-muted); font-size:9px; font-weight:750; }
+    .decision-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:11px; }
+    .decision-card { padding:16px; position:relative; overflow:hidden; border-top:3px solid var(--decision-color,var(--blue)); }
+    .decision-card::after { content:"?"; position:absolute; right:10px; top:-21px; font-size:90px; line-height:1; font-weight:900; color:var(--decision-color,var(--blue)); opacity:.07; pointer-events:none; }
+    .decision-kicker { color:var(--muted); text-transform:uppercase; letter-spacing:.1em; font-size:9px; font-weight:900; }
+    .decision-card h3 { position:relative; margin:8px 0 8px; font-size:13px; line-height:1.38; letter-spacing:-.015em; }
+    .decision-card p { position:relative; margin:0; color:var(--muted); font-size:10.5px; line-height:1.6; }
+    .decision-evidence { display:block; margin-top:11px; padding-top:9px; border-top:1px solid var(--border); color:var(--text); font-size:10px; line-height:1.45; font-weight:800; }
+    .table-actions { display:flex; align-items:center; flex-wrap:wrap; gap:9px; }
+    .secondary-action { padding:8px 11px; border:1px solid var(--border); border-radius:9px; color:var(--text); background:var(--surface-strong); font-size:10px; font-weight:850; }
+    .secondary-action:hover { background:var(--blue-tint); border-color:rgba(0,113,206,.45); color:var(--blue); transform:translateY(-1px); }
+    .dependency-note { color:var(--muted); padding:8px 12px; margin:8px 0 12px; border:1px solid var(--border); border-radius:9px; font-size:10px; }
+    .sr-only { position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    @media (max-width:1100px) {
+      .chart-explorer { align-items:flex-start; flex-direction:column; }
+      .explorer-controls { width:100%; justify-content:flex-start; }
+      .search-field { flex:1; }
+      .decision-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:720px) {
+      .toolbar { top:0; margin-bottom:10px; }
+      .view-hint { text-align:left; max-width:none; }
+      .chart-actions { justify-content:flex-start; }
+      .chart-actions .badge { white-space:normal; }
+      .filter-pills { max-width:100%; }
+      .filter-pill { padding:6px 7px; }
+      .timeline-wrap { padding:14px; }
+      .timeline-track { grid-template-columns:1fr; gap:18px; }
+      .timeline-track::before { left:12px; right:auto; top:12px; bottom:15px; width:1px; height:auto; background:linear-gradient(180deg,rgba(15,152,136,.5),rgba(245,158,11,.65),rgba(0,113,206,.5)); }
+      .timeline-item, .timeline-item:not(:first-child) { padding:0 0 0 42px; }
+      .timeline-dot { position:absolute; left:0; top:0; margin:0; }
+      .timeline-change { font-size:17px; }
+      .chart-card.expanded .chart-canvas { height:300px; }
+    }
+
+    @media print {
+      @page { size:landscape; margin:10mm; }
+      body { background:#fff !important; color:#18283b !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+      .shell { width:100% !important; max-width:none !important; }
+      .hero { padding:15px 0 13px; box-shadow:none; break-after:avoid; }
+      .hero-actions, .toolbar, .notice, .chart-explorer, .chart-actions, .skip-link { display:none !important; }
+      main { padding:10px 0 0; }
+      .panel[hidden] { display:block !important; }
+      .panel { animation:none !important; break-inside:auto; }
+      .section-head { margin-top:12px; }
+      .insight-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; }
+      .insight-card { min-height:150px; padding:10px; box-shadow:none; break-inside:avoid; }
+      .kpi-strip { grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; }
+      .kpi-card { min-height:100px; padding:10px; box-shadow:none; break-inside:avoid; }
+      .chart-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+      .chart-card, .note-card, .narrative-card, .team-card, .source-item, .decision-card, .timeline-wrap { box-shadow:none !important; backdrop-filter:none !important; break-inside:avoid; }
+      .chart-card.filtered-out { display:block !important; }
+      .chart-card.expanded { grid-column:auto; }
+      .timeline-track { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .decision-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .decision-card { min-height:145px; }
+      .panel { page-break-before:auto; }
+      .chart-canvas { height:205px !important; }
+      .glass { background:#fff !important; color:#18283b !important; border-color:#d6dee8 !important; backdrop-filter:none !important; }
+      .table-wrap { overflow:visible !important; }
+      table { font-size:8px; }
+      th, td { padding:6px 5px; }
+      .metric-cell { min-width:125px; }
+      .source-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .source-item a { color:#005ea8 !important; }
+      .footer { margin-top:12px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgressBar"></span></div>
+  <a class="skip-link" href="#mainContent">Skip to dashboard content</a>
+  <header class="hero">
+    <div class="shell">
+      <div class="hero-top">
+        <div class="brand">
+          <div class="spark" aria-hidden="true">✻</div>
+          <div>
+            <div class="eyebrow">Group 9 · Week 7 · Live KPI Dashboard</div>
+            <h1>Walmart Digital Transformation</h1>
+            <div class="subtitle">Walmart Inc. (WMT) · Public-disclosure analysis · FY2023–FY2026</div>
+          </div>
+        </div>
+        <div class="hero-actions" aria-label="Dashboard controls">
+          <button class="control-btn" type="button" id="themeToggle" aria-pressed="false" title="Switch between light and dark themes"><span aria-hidden="true">◐</span><span id="themeLabel">Dark mode</span></button>
+          <button class="control-btn" type="button" id="showAllToggle" aria-pressed="false"><span aria-hidden="true">▤</span><span id="showAllLabel">Show all sections</span></button>
+          <button class="control-btn print-btn" type="button" id="printToggle" title="Print or save the full dashboard as PDF"><span aria-hidden="true">↗</span><span>Print / Save PDF</span></button>
+        </div>
+      </div>
+      <div class="thesis">
+        <strong>Transformation thesis</strong>
+        Walmart is turning its U.S. store base into a digital fulfillment and retail media network, shifting value from low-margin store sales toward higher-margin eCommerce, advertising, and membership income.
+      </div>
+      <div class="hero-stats" aria-label="Dashboard at a glance">
+        <span class="hero-stat"><b>8</b> diagnostic KPIs</span>
+        <span class="hero-stat"><b>3</b> leading · <b>5</b> lagging</span>
+        <span class="hero-stat"><b>3</b> annotated inflection points</span>
+        <span class="hero-stat">FY2023 baseline → FY2026 latest</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell" id="mainContent">
+    <div class="toolbar">
+      <nav class="tabs" role="tablist" aria-label="Dashboard sections">
+        <button class="tab" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="true" data-tab="dashboard">01 · Dashboard</button>
+        <button class="tab" role="tab" id="tab-data" aria-controls="panel-data" aria-selected="false" data-tab="data">02 · Data & notes</button>
+        <button class="tab" role="tab" id="tab-analysis" aria-controls="panel-analysis" aria-selected="false" data-tab="analysis">03 · Thesis & rationale</button>
+        <button class="tab" role="tab" id="tab-sources" aria-controls="panel-sources" aria-selected="false" data-tab="sources">04 · Sources & team</button>
+      </nav>
+      <div class="view-hint" id="viewHint" aria-live="polite">Dashboard view · eight charts remain together for review</div>
+    </div>
+
+    <div id="chartLoadNotice" class="notice" role="status">Chart.js could not be loaded. Connect to the internet and reopen this file to load the charts from the required CDN.</div>
+    <div class="dependency-note" id="dependencyNote" hidden>Chart annotations rely on the Chart.js annotation plugin. The explanatory callouts remain visible below the charts.</div>
+
+    <section class="panel" id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard" data-panel="dashboard">
+      <div class="section-head">
+        <div><h2>Executive readout</h2><p>Four signals to anchor the leadership conversation before reviewing the full scorecard.</p></div>
+        <div class="micro-label">Observed patterns · not standalone proof of causality</div>
+      </div>
+      <div class="insight-grid" id="executiveInsightGrid" aria-label="Executive readout, four key signals"></div>
+
+      <div class="section-head">
+        <div><h2>Executive KPI scorecard</h2><p>Latest value against the start-of-period baseline, using Member B's FY2023–FY2026 data package.</p></div>
+        <div class="micro-label">Leading indicators are teal · Lagging indicators are blue</div>
+      </div>
+      <div class="kpi-strip" id="kpiSummaryStrip"></div>
+
+      <div class="section-head">
+        <div><h2>Transformation performance & inflection diagnostics</h2><p>The eight indicators span revenue mix, platform monetization, investment, margin, productivity, and digital demand.</p></div>
+        <div class="micro-label">Annual fiscal axis for KPIs 1–7 · Q4 comparison axis for KPI 8</div>
+      </div>
+      <div class="chart-explorer glass" aria-label="Explore and filter KPI charts">
+        <div class="explorer-intro"><span class="explorer-overline">Explore the scorecard</span><strong>Find the signal behind each KPI</strong><span id="chartFilterStatus" aria-live="polite">Showing all 8 metrics</span></div>
+        <div class="explorer-controls">
+          <label class="search-field"><span class="sr-only">Search KPI charts</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg><input id="kpiSearch" type="search" placeholder="Search metrics…" autocomplete="off"></label>
+          <div class="filter-pills" role="group" aria-label="Filter by leading or lagging indicator"><button type="button" class="filter-pill" data-filter="All" aria-pressed="true">All <span>8</span></button><button type="button" class="filter-pill" data-filter="Leading" aria-pressed="false">Leading <span>3</span></button><button type="button" class="filter-pill" data-filter="Lagging" aria-pressed="false">Lagging <span>5</span></button></div>
+          <button type="button" id="resetKpiFilters" class="quiet-action">Reset</button>
+        </div>
+      </div>
+      <div class="chart-grid" id="chartGrid">
+        <article class="glass chart-card primary" data-kpi-id="1" data-kpi-type="Lagging" data-kpi-dimension="revenue">
+          <div class="chart-meta"><div class="chart-tags"><span class="badge lagging">Lagging</span><span class="dimension">Revenue model shift</span></div><div class="chart-actions"><span class="badge">Metric 01</span><button class="mini-action" type="button" data-action="expand" data-chart="chart1" aria-pressed="false">Focus</button><button class="mini-action" type="button" data-action="export" data-chart="chart1">PNG ↗</button></div></div>
+          <h3 class="chart-title">eCommerce Sales as % of Total Revenue</h3><p class="chart-subtitle">Global eCommerce's share of consolidated revenue expanded by 7.66 percentage points.</p>
+          <div class="chart-canvas"><canvas id="chart1" aria-label="Stacked bar chart of ecommerce and store and other share of total revenue" role="img"></canvas></div>
+          <div class="chart-note"><span>Formula: global eCommerce net sales ÷ consolidated total revenues</span><span>Sources: S2, S4</span></div>
+        </article>
+
+        <article class="glass chart-card has-inflection" data-kpi-id="2" data-kpi-type="Leading" data-kpi-dimension="revenue">
+          <div class="chart-meta"><div class="chart-tags"><span class="badge leading">Leading</span><span class="dimension">Revenue model shift</span></div><div class="chart-actions"><span class="badge flag">Inflection · FY2024</span><button class="mini-action" type="button" data-action="expand" data-chart="chart2" aria-pressed="false">Focus</button><button class="mini-action" type="button" data-action="export" data-chart="chart2">PNG ↗</button></div></div>
+          <h3 class="chart-title">Global eCommerce Growth, YoY</h3><p class="chart-subtitle">Growth accelerated sharply in FY2024 and remained above 20% in the following two years.</p>
+          <div class="chart-canvas"><canvas id="chart2" aria-label="Line chart of global ecommerce annual growth" role="img"></canvas></div>
+          <div class="annotation"><strong>FY2024 — what changed:</strong> growth increased from ~12.2% to ~21.9%. <strong>Likely cause:</strong> Walmart reported strong adoption of store-fulfilled pickup and delivery across its store network.</div>
+          <div class="chart-note"><span>Approximate rates calculated from disclosed eCommerce sales values</span><span>Sources: S2, S4, S6</span></div>
+        </article>
+
+        <article class="glass chart-card has-inflection" data-kpi-id="3" data-kpi-type="Lagging" data-kpi-dimension="platform">
+          <div class="chart-meta"><div class="chart-tags"><span class="badge lagging">Lagging</span><span class="dimension">Platform leverage</span></div><div class="chart-actions"><span class="badge flag">Inflection · FY2026</span><button class="mini-action" type="button" data-action="expand" data-chart="chart3" aria-pressed="false">Focus</button><button class="mini-action" type="button" data-action="export" data-chart="chart3">PNG ↗</button></div></div>
+          <h3 class="chart-title">Global Advertising Revenue Growth</h3><p class="chart-subtitle">Reported advertising growth rebounded to 46%; the latest bar includes acquisition-related growth.</p>
+          <div class="chart-canvas"><canvas id="chart3" aria-label="Bar chart of annual global advertising revenue growth" role="img"></canvas></div>
+          <div class="annotation"><strong>FY2026 — what changed:</strong> growth rose from 27% to 46%. <strong>Cause / caveat:</strong> the figure includes acquired VIZIO advertising revenue and is not wholly organic Walmart Connect growth.</div>
+          <div class="chart-note"><span>Reported global advertising business growth; approximate where marked</span><span>Sources: S5–S8</span></div>
+        </article>
+
+        <article class="glass chart-card" data-kpi-id="4" data-kpi-type="Lagging" data-kpi-dimension="customer">
+          <div class="chart-meta"><div class="chart-tags"><span class="badge lagging">Lagging</span><span class="dimension">Customer engagement</span></div><div class="chart-actions"><span class="badge">Metric 04</span><button class="mini-action" type="button" data-action="expand" data-chart="chart4" aria-pressed="false">Focus</button><button class="mini-action" type="button" data-action="export" data-chart="chart4">PNG ↗</button></div></div>
+          <h3 class="chart-title">Membership & Other Income</h3><p class="chart-subtitle">Consolidated income increased 24.8%; disclosed membership-fee revenue is shown separately from the residual component.</p>
+          <div class="chart-canvas"><canvas id="chart4" aria-label="Stacked bar chart of membership fee revenue and other income with consolidated total line" role="img"></canvas></div>
+          <div class="chart-note"><span>Consolidated line includes items beyond membership fees</span><span>Sources: S2, S4</span></div>
+        </article>
+
+        <article class="glass chart-card" data-kpi-id="5" data-kpi-type="Leading" data-kpi-dimension="operations">
+          <div class="chart-meta"><div class="chart-tags"><span class="badge leading">Leading</span><span class="dimension">Operational leverage</span></div><div class="chart-actions"><span class="badge">Metric 05</span><button class="mini-action" type="button" data-action="expand" data-chart="chart5" aria-pressed="false">Focus</button><button class="mini-action" type="button" data-action="export" data-chart="chart5">PNG ↗</button></div></div>
+          <h3 class="chart-title">Capital Expenditures as % of Revenue</h3><p class="chart-subtitle">CapEx intensity climbed as Walmart continued investing in the operating model and its omnichannel capabilities.</p>
+          <div class="chart-canvas"><canvas id="chart5" aria-label="Combined bar and line chart of capex dollars and capex as a percent of revenue" role="img"></canvas></div>
+          <div class="chart-note"><span>Broad investment proxy; CapEx is not digital-only</span><span>Sources: S2, S4</span></div>
+        </article>
+
+        <article class="glass chart-card" data-kpi-id="6" data-kpi-type="Lagging" data-kpi-dimension="operations">
+          <div class="chart-meta"><div class="chart-tags"><span class="badge lagging">Lagging</span><span class="dimension">Operational leverage</span></div><div class="chart-actions"><span class="badge">Metric 06</span><button class="mini-action" type="button" data-action="expand" data-chart="chart6" aria-pressed="false">Focus</button><button class="mini-action" type="button" data-action="export" data-chart="chart6">PNG ↗</button></div></div>
+          <h3 class="chart-title">Gross Profit Rate</h3><p class="chart-subtitle">Gross profit rate improved by 70 basis points over the measurement window.</p>
+          <div class="chart-canvas"><canvas id="chart6" aria-label="Line chart of annual gross profit rate" role="img"></canvas></div>
+          <div class="chart-note"><span>Percentage of net sales, not total revenues</span><span>Sources: S2, S4</span></div>
+        </article>
+
+        <article class="glass chart-card" data-kpi-id="7" data-kpi-type="Lagging" data-kpi-dimension="operations">
+          <div class="chart-meta"><div class="chart-tags"><span class="badge lagging">Lagging</span><span class="dimension">Workforce productivity</span></div><div class="chart-actions"><span class="badge">Metric 07</span><button class="mini-action" type="button" data-action="expand" data-chart="chart7" aria-pressed="false">Focus</button><button class="mini-action" type="button" data-action="export" data-chart="chart7">PNG ↗</button></div></div>
+          <h3 class="chart-title">Revenue per Employee</h3><p class="chart-subtitle">Revenue per reported associate rose ~16.8%, using the rounded workforce figure disclosed by Walmart.</p>
+          <div class="chart-canvas"><canvas id="chart7" aria-label="Bar chart of approximate revenue per associate in thousands of dollars" role="img"></canvas></div>
+          <div class="chart-note"><span>Calculated proxy: total revenue ÷ ~2.1M associates</span><span>Sources: S1–S4</span></div>
+        </article>
+
+        <article class="glass chart-card has-inflection" data-kpi-id="8" data-kpi-type="Leading" data-kpi-dimension="customer">
+          <div class="chart-meta"><div class="chart-tags"><span class="badge leading">Leading</span><span class="dimension">Customer adoption</span></div><div class="chart-actions"><span class="badge flag">Inflection · Q4 FY2026</span><button class="mini-action" type="button" data-action="expand" data-chart="chart8" aria-pressed="false">Focus</button><button class="mini-action" type="button" data-action="export" data-chart="chart8">PNG ↗</button></div></div>
+          <h3 class="chart-title">Walmart U.S. eCommerce Contribution to Comp Sales</h3><p class="chart-subtitle">Digital's reported contribution to U.S. comparable-sales growth increased to ~520 bps in Q4 FY2026.</p>
+          <div class="chart-canvas"><canvas id="chart8" aria-label="Line chart of fourth quarter ecommerce contribution to comparable sales with total comparable growth reference line" role="img"></canvas></div>
+          <div class="annotation"><strong>Q4 FY2026 — what changed:</strong> contribution rose from ~290 bps to ~520 bps. <strong>Cause:</strong> Walmart reported more than 50% growth in expedited store-fulfilled delivery channels; the contribution exceeded total U.S. comp growth of 460 bps (4.6%).</div>
+          <div class="chart-note"><span>Q4 values, ex-fuel; the total-comp line is a reference point</span><span>Sources: S5–S9</span></div>
+        </article>
+      </div>
+
+      <div class="section-head timeline-heading"><div><h2>Three inflection points. One transformation story.</h2><p>Critical changes identified in Member B’s data package, with the measured shift and the disclosed or likely explanation.</p></div><span class="micro-label">Data-backed milestones · FY2024–Q4 FY2026</span></div>
+      <div class="glass timeline-wrap"><div class="timeline-track" id="inflectionTimeline" aria-label="Timeline of three KPI inflection points"></div></div>
+
+      <div class="section-head"><div><h2>Questions for the next operating review</h2><p>Use the data to frame the decisions that matter—not just to report what moved.</p></div><span class="micro-label">Management questions · not causal conclusions</span></div>
+      <div class="decision-grid" id="decisionQuestions"></div>
+    </section>
+
+    <section class="panel" id="panel-data" role="tabpanel" aria-labelledby="tab-data" data-panel="data" hidden>
+      <div class="section-head"><div><h2>Data & comparability</h2><p>Values and calculation notes are reproduced from the Member B dataset summary in the provided conversation transcript.</p></div><div class="micro-label">Amounts in USD unless stated otherwise</div></div>
+      <div class="glass data-card">
+        <div class="table-topline"><div><h3>Metric time series & baseline-to-current change</h3><p>Metrics 1–7 use fiscal years; Metric 8 uses fourth-quarter comparisons.</p></div><div class="table-actions"><span class="badge">8 metrics · 4 periods each</span><button type="button" class="secondary-action" id="exportCsv">Download CSV ↓</button></div></div>
+        <div class="table-wrap">
+          <table aria-label="KPI time series and comparability notes">
+            <thead><tr><th>Metric</th><th>Type</th><th>Baseline</th><th>Period 2</th><th>Period 3</th><th>Most recent</th><th>Change</th><th>Source / treatment / comparability notes</th></tr></thead>
+            <tbody id="dataTableBody"></tbody>
+          </table>
+        </div>
+        <div class="table-foot">Approximation marks (~) are retained for synthesized or rounded values. The FY2026 advertising rate includes VIZIO-related growth and should not be read as an entirely organic result.</div>
+      </div>
+      <div class="note-grid">
+        <article class="glass note-card"><h3>Revenue denominators & periods</h3><p>Consolidated revenues used for eCommerce mix were $611.289B, $648.125B, $680.985B, and $713.163B for FY2023–FY2026. Global eCommerce net sales were $82.1B, $100.1B, $120.9B, and $150.4B. The FY2023 growth calculation uses a FY2022 eCommerce base of $73.2B. FY2025 included 53 weeks, compared with 52 weeks in FY2024, so annual growth comparisons carry a calendar-period caveat.</p></article>
+        <article class="glass note-card"><h3>What the dataset can and cannot prove</h3><p>CapEx as a share of revenue is a broad investment proxy, not a disclosed digital-only spend series. Revenue per employee is an approximation based on ~2.1 million associates rather than a precise full-time-equivalent workforce. Membership & Other Income is a consolidated line that includes items beyond membership fees. These measures are directional indicators, not isolated causal estimates of digital transformation returns.</p></article>
+        <article class="glass note-card"><h3>Gross profit rate definition</h3><p>Gross profit rate is shown as a share of consolidated net sales, not total revenues. Changes can reflect merchandise-category mix, pricing, inventory and other factors beyond transformation initiatives; it is included as a financial guardrail rather than proof that digital investment alone caused margin expansion.</p></article>
+        <article class="glass note-card"><h3>Reading the eCommerce contribution benchmark</h3><p>Q4 FY2026's ~520 bps eCommerce contribution to U.S. comp sales is compared with 460 bps (4.6%) total U.S. comp growth. The eCommerce contribution is a component of the overall result and may be offset by other components; the chart does not claim that every physical-store metric was negative.</p></article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-analysis" role="tabpanel" aria-labelledby="tab-analysis" data-panel="analysis" hidden>
+      <div class="section-head"><div><h2>Thesis, KPI rationale & strategic interpretation</h2><p>Metric logic and the existing two-paragraph interpretation from the conversation are aligned with the dashboard's eight KPI names.</p></div><div class="micro-label">Leading / lagging balance: 3 / 5</div></div>
+      <div class="narrative-grid">
+        <article class="glass narrative-card">
+          <h3>KPI selection rationale <span class="badge">3 leading · 5 lagging</span></h3>
+          <p>The eight metrics test the transformation thesis across three related questions: is digital changing Walmart's revenue mix, is the model creating new monetization and operating leverage, and is customer adoption producing incremental demand? The set deliberately combines early signals of momentum and investment with outcome measures that show whether the strategy is showing up in economics.</p>
+          <ul class="rationale-list">
+            <li><strong>1. eCommerce Sales as % of Total Revenue — Lagging.</strong> This is the clearest measure of structural revenue-mix change. Absolute eCommerce sales can rise while the wider company grows at a similar pace; the share metric tests whether digital is gaining weight in the total business rather than merely tracking company growth.</li>
+            <li class="leading-item"><strong>2. Global eCommerce Growth, YoY — Leading.</strong> Growth momentum can shift before the digital share of revenue changes materially. It is therefore useful as an earlier signal of demand acceleration, while the FY2024 inflection makes clear when the pace changed.</li>
+            <li><strong>3. Global Advertising Revenue Growth — Lagging.</strong> Advertising growth tests whether Walmart is monetizing its retail-media network in addition to selling merchandise. The FY2026 VIZIO inclusion is called out because acquisition-driven growth is different from purely organic monetization.</li>
+            <li><strong>4. Membership & Other Income — Lagging.</strong> This line tracks an ecosystem income stream related to membership and other activities, not just transaction-based retail sales. The separate membership-fee series helps distinguish disclosed fee growth from the broader consolidated line.</li>
+            <li class="leading-item"><strong>5. Capital Expenditures as % of Revenue — Leading.</strong> Investment intensity indicates whether capital commitments are rising alongside the transformation. CapEx is broad and not digital-only, so it is an input/proxy that must be read with margin and productivity outcomes rather than as value realization by itself.</li>
+            <li><strong>6. Gross Profit Rate — Lagging.</strong> This financial guardrail tests whether the changing mix and fulfillment model are compatible with margin resilience. It adds a profitability lens that revenue growth alone cannot supply, while still reflecting non-digital influences such as category and pricing mix.</li>
+            <li><strong>7. Revenue per Employee — Lagging.</strong> This productivity proxy asks whether revenue scales faster than the reported associate base. The workforce count is rounded, so the series is approximate and should be interpreted as direction, not a precise labor-productivity measure.</li>
+            <li class="leading-item"><strong>8. Walmart U.S. eCommerce Contribution to Comp Sales — Leading.</strong> This indicator makes digital's contribution to comparable-sales growth visible before that signal is obscured inside consolidated revenue. Comparing its contribution with total U.S. comp growth exposes whether other components add to or offset digital momentum.</li>
+          </ul>
+          <p style="margin-top:12px">Together, the leading indicators show current momentum and investment commitment, while the lagging indicators test whether this activity corresponds with revenue-mix change, monetization, margin resilience, and productivity. No one KPI proves causality; the combined pattern is more diagnostic than any individual series.</p>
+        </article>
+        <article class="glass narrative-card">
+          <h3>Strategic interpretation <span class="badge flag">2 paragraphs</span></h3>
+          <p>Walmart’s FY2023–FY2026 data confirms that its store-fulfilled digital transformation is structurally shifting the revenue model rather than merely digitizing existing transactions. Following the first major inflection point in FY2024—when <strong>2. Global eCommerce Growth, YoY</strong> nearly doubled from ~12.2% in FY2023 to ~21.9% on strong store-fulfilled pickup and delivery adoption—sustained 20%+ annual digital expansion lifted <strong>1. eCommerce Sales as % of Total Revenue</strong> from 13.43% in FY2023 to 21.09% in FY2026 ($150.4B of $713.163B total revenue). Even more diagnostically, the third inflection point in Q4 FY2026 saw <strong>8. Walmart U.S. eCommerce Contribution to Comp Sales</strong> surge from ~290 bps in Q4 FY2025 to ~520 bps, fueled by more than 50% growth in expedited store-fulfilled delivery. Because ~520 bps (5.2 percentage points) exceeded total Walmart U.S. comparable sales growth of 4.6% in Q4 FY2026, the pattern suggests that digital fulfillment was the primary source of incremental U.S. comparable-sales growth in that quarter, with other components offsetting part of its contribution.</p>
+          <p>Crucially, Walmart is avoiding the traditional retail eCommerce margin trap by pairing store-based fulfillment with higher-margin ecosystem streams and disciplined automation spending. While <strong>5. Capital Expenditures as % of Revenue</strong> rose from 2.76% ($16.857B) in FY2023 to 3.74% ($26.642B) in FY2026 to fund supply-chain and operating capabilities, <strong>6. Gross Profit Rate</strong> expanded by 70 bps from 23.5% to 24.2%, and <strong>7. Revenue per Employee</strong> climbed 16.8% from ~$291K to ~$340K across a stable rounded base of ~2.1 million associates. This margin resilience is accompanied by growth in <strong>4. Membership & Other Income</strong> from $5.408B to $6.750B (with disclosed membership fees rising from $2.6B to $4.4B) and a jump in <strong>3. Global Advertising Revenue Growth</strong> from 27% to 46%. However, because FY2026's advertising spike incorporates acquired VIZIO revenue rather than purely organic Walmart Connect gains, leadership should monitor organic ad monetization and productivity against fulfillment costs as the digital revenue mix continues to rise.</p>
+          <div class="annotation" style="margin-top:13px"><strong>Interpretation checkpoint:</strong> Validate wording and claims against the original Member A/B documents and the cited disclosures before submission. The provided PDF contains a transcript of the prior work, not the original editable Member A/B files.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-sources" role="tabpanel" aria-labelledby="tab-sources" data-panel="sources" hidden>
+      <div class="section-head"><div><h2>Source register</h2><p>Named public disclosures underpinning the time series, shown with reporting dates and metric coverage.</p></div><div class="micro-label">Official SEC / Walmart investor-relations links</div></div>
+      <div class="glass data-card"><div class="source-grid" id="sourcesGrid"></div><p class="source-disclaimer">Data values are hard-coded in this HTML file and are not fetched from an API. Estimates or calculations are labeled in the metric notes. Annual revenue, gross profit-rate, CapEx, and membership/other-income figures are from company filings; digital and advertising series use the public disclosure set identified in the prior conversation. Chart.js and its annotation plugin load from their public CDNs.</p></div>
+      <div class="section-head"><div><h2>Team & contribution areas</h2><p>Group 9 · Week 7 Value & KPIs · Four individual contributor cards across three assignment roles.</p></div><div class="micro-label">4 team members · 3 assignment roles</div></div>
+      <div class="team-grid" role="list" aria-label="Group 9 team members and contribution areas">
+        <article class="glass team-card member-a" role="listitem">
+          <div class="member">Member A · Metric Selector</div>
+          <h3>Transformation thesis & KPI design</h3>
+          <div class="team-names"><div class="team-name"><span class="team-avatar" aria-hidden="true">LS</span><span>Lira Sandoval Campos</span></div></div>
+          <p>Leads the transformation thesis and selection of the eight diagnostic KPIs, explains the value of the leading/lagging balance, and owns the KPI rationale and strategic interpretation.</p>
+        </article>
+        <article class="glass team-card member-b" role="listitem">
+          <div class="member">Member B · Data Analyst</div>
+          <h3>Evidence & inflection analysis</h3>
+          <div class="team-names"><div class="team-name"><span class="team-avatar" aria-hidden="true">GK</span><span>Giang Khuu</span></div></div>
+          <p>Sources and organizes the public-disclosure data, documents estimates and comparability caveats, and identifies the major inflection points with time periods and explanations.</p>
+        </article>
+        <article class="glass team-card member-c" role="listitem">
+          <div class="member">Member C · Dashboard Builder</div>
+          <h3>Shared dashboard delivery</h3>
+          <div class="team-names"><div class="team-name"><span class="team-avatar" aria-hidden="true">HT</span><span>Hudson Trussell</span></div></div>
+          <p>Collaborated with Azimjon on parts of the shared HTML/Chart.js dashboard, contributing to the combined Member C deliverable.</p>
+        </article>
+        <article class="glass team-card member-c" role="listitem">
+          <div class="member">Member C · Dashboard Builder</div>
+          <h3>Shared dashboard delivery</h3>
+          <div class="team-names"><div class="team-name"><span class="team-avatar" aria-hidden="true">AI</span><span>Azimjon Izzatillaev</span></div></div>
+          <p>Collaborated with Hudson on parts of the shared HTML/Chart.js dashboard, contributing to the combined Member C deliverable.</p>
+        </article>
+      </div>
+      <div class="team-collab-note" role="note"><span class="team-collab-mark" aria-hidden="true">↗</span><span><strong>Shared Member C responsibility.</strong> Hudson Trussell and Azimjon Izzatillaev are listed in separate cards for clear attribution; their dashboard work was collaborative, so the page does not assign exclusive ownership of individual components.</span></div>
+    </section>
+
+    <footer class="footer"><span><b>Walmart Digital Transformation KPI Dashboard</b> · Group 9 · Week 7</span><span>Data window: FY2023–FY2026 · 8 KPIs · 3 annotated inflection points</span><span>Single HTML file · Chart.js CDN</span></footer>
+  </main>
+
+  <script>
+    // All dashboard data, assumptions, inflection points, and source references are hard-coded here.
+    const WALMART_DASHBOARD_DATA = {
+      company: "Walmart Inc. (NYSE: WMT)",
+      thesis: "Walmart is turning its U.S. store base into a digital fulfillment and retail media network, shifting value from low-margin store sales toward higher-margin eCommerce, advertising, and membership income.",
+      annualLabels: ["FY2023", "FY2024", "FY2025", "FY2026"],
+      q4Labels: ["Q4 FY2023", "Q4 FY2024", "Q4 FY2025", "Q4 FY2026"],
+      denominators: {
+        consolidatedRevenueB: [611.289, 648.125, 680.985, 713.163],
+        globalEcommerceB: [82.1, 100.1, 120.9, 150.4],
+        fy22EcommerceB: 73.2,
+        capexB: [16.857, 20.606, 23.783, 26.642],
+        associatesM: [2.1, 2.1, 2.1, 2.1],
+        disclosedMembershipFeeB: [2.6, 3.1, 3.8, 4.4],
+        otherIncomeComponentB: [2.808, 2.388, 2.647, 2.350],
+        totalUSCompQ4FY2026Bps: 460
+      },
+      inflections: [
+        { metricId: 2, period: "FY2024", change: "~12.2% → ~21.9%", cause: "Walmart reported strong store-fulfilled pickup and delivery adoption across its store network." },
+        { metricId: 3, period: "FY2026", change: "27% → 46%", cause: "FY2026 includes acquired VIZIO advertising revenue, so the increase is not wholly organic." },
+        { metricId: 8, period: "Q4 FY2026", change: "~290 → ~520 bps", cause: "Walmart cited more than 50% growth in expedited store-fulfilled delivery channels." }
+      ],
+      metrics: [
+        { id: 1, name: "1. eCommerce Sales as % of Total Revenue", shortName: "eCommerce % of revenue", type: "Lagging", dimension: "Revenue model shift", periods: ["FY2023","FY2024","FY2025","FY2026"], values: [13.43,15.44,17.75,21.09], displayValues: ["13.43%","15.44%","17.75%","21.09%"], baseline: "13.43% (FY23)", recent: "21.09% (FY26)", delta: "+7.66 pts (+766 bps)", status: "Calculated", sources: "S2, S4", note: "Global eCommerce net sales ($82.1B, $100.1B, $120.9B, $150.4B) divided by consolidated total revenues ($611.289B, $648.125B, $680.985B, $713.163B).", tableNote: "Calculated share of total revenue. Digital sales and revenue values are disclosed in company filings; fiscal mix is not a digital-only profit measure.", storeAndOtherShare: [86.57,84.56,82.25,78.91], hasInflection: false },
+        { id: 2, name: "2. Global eCommerce Growth, YoY", shortName: "Global eCommerce growth", type: "Leading", dimension: "Revenue model shift", periods: ["FY2023","FY2024","FY2025","FY2026"], values: [12.2,21.9,20.8,24.4], displayValues: ["~12.2%","~21.9%","~20.8%","~24.4%"], baseline: "~12.2% (FY23)", recent: "~24.4% (FY26)", delta: "+12.2 pts (+1,220 bps)", status: "Calculated, approx.", sources: "S2, S4, S6", note: "Calculated from annual global eCommerce net sales versus the prior year; FY2023 uses $73.2B for FY2022. Segment values are rounded to $0.1B.", tableNote: "Growth estimates use rounded disclosed segment totals. FY2025 had 53 weeks versus 52 in FY2024, so period length can affect comparisons.", hasInflection: true, inflectionPeriod: "FY2024" },
+        { id: 3, name: "3. Global Advertising Revenue Growth", shortName: "Global advertising growth", type: "Lagging", dimension: "Platform leverage", periods: ["FY2023","FY2024","FY2025","FY2026"], values: [30,28,27,46], displayValues: ["~30%","~28%","27%","46%"], baseline: "~30% (FY23)", recent: "46% (FY26)", delta: "+16.0 pts (+1,600 bps)", status: "Reported, approx. where marked", sources: "S5–S8", note: "Reported global advertising business growth. FY2026's 46% includes acquired VIZIO advertising and should not be read as wholly organic Walmart Connect growth.", tableNote: "FY2026 includes VIZIO; the company's Q4 FY2026 release reports full-year growth of 46%, while Q4 growth was 37% including VIZIO.", hasInflection: true, inflectionPeriod: "FY2026" },
+        { id: 4, name: "4. Membership & Other Income", shortName: "Membership & other income", type: "Lagging", dimension: "Customer engagement", periods: ["FY2023","FY2024","FY2025","FY2026"], values: [5.408,5.488,6.447,6.750], displayValues: ["$5.408B","$5.488B","$6.447B","$6.750B"], baseline: "$5.408B (FY23)", recent: "$6.750B (FY26)", delta: "+$1.342B (+24.8%)", status: "Reported", sources: "S2, S4", note: "Consolidated membership and other income line; disclosed pure membership fee revenue was $2.6B, $3.1B, $3.8B, and $4.4B respectively.", tableNote: "Consolidated line includes non-membership items. ‘Other income component’ in the chart is the residual after subtracting disclosed membership-fee revenue.", hasInflection: false },
+        { id: 5, name: "5. Capital Expenditures as % of Revenue", shortName: "CapEx intensity", type: "Leading", dimension: "Operational leverage", periods: ["FY2023","FY2024","FY2025","FY2026"], values: [2.76,3.18,3.49,3.74], displayValues: ["2.76%","3.18%","3.49%","3.74%"], baseline: "2.76% (FY23)", recent: "3.74% (FY26)", delta: "+0.98 pts (+98 bps)", status: "Calculated", sources: "S2, S4", note: "Consolidated CapEx ($16.857B, $20.606B, $23.783B, $26.642B) divided by consolidated revenues. Broad proxy; not all CapEx is digital investment.", tableNote: "Broad investment-intensity proxy. CapEx includes stores, supply chain, technology, and other assets; it is not isolated digital spending.", hasInflection: false },
+        { id: 6, name: "6. Gross Profit Rate", shortName: "Gross profit rate", type: "Lagging", dimension: "Operational leverage", periods: ["FY2023","FY2024","FY2025","FY2026"], values: [23.5,23.7,24.1,24.2], displayValues: ["23.5%","23.7%","24.1%","24.2%"], baseline: "23.5% (FY23)", recent: "24.2% (FY26)", delta: "+0.70 pts (+70 bps)", status: "Reported", sources: "S2, S4", note: "Consolidated gross profit rate as a percentage of net sales (not total revenues); reflects category mix, pricing, inventory and other factors.", tableNote: "Denominator is consolidated net sales. The rate is a guardrail and cannot be attributed to digital transformation alone.", hasInflection: false },
+        { id: 7, name: "7. Revenue per Employee", shortName: "Revenue per employee", type: "Lagging", dimension: "Workforce productivity", periods: ["FY2023","FY2024","FY2025","FY2026"], values: [291,309,324,340], displayValues: ["~$291K","~$309K","~$324K","~$340K"], baseline: "~$291K (FY23)", recent: "~$340K (FY26)", delta: "+~$49K (+16.8%)", status: "Calculated, approx.", sources: "S1–S4", note: "Consolidated total revenues divided by approximately 2.1 million reported associates each year. Headcount is rounded, so results are approximate.", tableNote: "Workforce value is approximately 2.1 million associates each year. This is not adjusted for hours worked or full-time-equivalent mix.", hasInflection: false },
+        { id: 8, name: "8. Walmart U.S. eCommerce Contribution to Comp Sales", shortName: "U.S. eCommerce comp contribution", type: "Leading", dimension: "Customer adoption", periods: ["Q4 FY2023","Q4 FY2024","Q4 FY2025","Q4 FY2026"], values: [140,240,290,520], displayValues: ["~140 bps","~240 bps","~290 bps","~520 bps"], baseline: "~140 bps (Q4 FY23)", recent: "~520 bps (Q4 FY26)", delta: "+~380 bps (+271%)", status: "Reported Q4 only", sources: "S5–S9", note: "Walmart U.S. fourth-quarter eCommerce contribution to comp sales, ex-fuel. Q4 FY2026 ~520 bps (5.2%) exceeded total U.S. comp growth of 460 bps (4.6%).", tableNote: "Q4, ex-fuel. Digital contribution is a component of total comparable-sales growth and can be offset by other components; total comp reference = 460 bps for Q4 FY2026.", hasInflection: true, inflectionPeriod: "Q4 FY2026" }
+      ],
+      sources: [
+        { id: "S1", title: "Walmart FY2023 Form 10-K", date: "March 17, 2023", metricsUsed: "Metric 7: revenue denominator and reported associate context", url: "https://www.sec.gov/Archives/edgar/data/104169/000010416923000020/wmt-20230131.htm" },
+        { id: "S2", title: "Walmart FY2024 Form 10-K", date: "March 15, 2024", metricsUsed: "Metrics 1, 2, 4, 5, 6, 7 and relevant denominator data", url: "https://www.sec.gov/Archives/edgar/data/104169/000010416924000056/wmt-20240131.htm" },
+        { id: "S3", title: "Walmart FY2025 Form 10-K", date: "March 14, 2025", metricsUsed: "Metric 7 and associate context", url: "https://www.sec.gov/Archives/edgar/data/104169/000010416925000021/wmt-20250131.htm" },
+        { id: "S4", title: "Walmart FY2026 Form 10-K", date: "March 13, 2026", metricsUsed: "Metrics 1, 2, 4, 5, 6, 7 and relevant denominator data", url: "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm" },
+        { id: "S5", title: "Walmart FY2023 Q4 Earnings Release", date: "February 21, 2023", metricsUsed: "Metrics 3 and 8 historical baseline", url: "https://www.sec.gov/Archives/edgar/data/104169/000010416923000010/earningsreleasefy23q4.htm" },
+        { id: "S6", title: "Walmart FY2024 Q4 Earnings Release", date: "February 20, 2024", metricsUsed: "Metrics 2 and 3 plus reported eCommerce/ads discussion", url: "https://stock.walmart.com/sec-filings/all-sec-filings/content/0000104169-24-000019/earningsreleasefy24q4.htm" },
+        { id: "S7", title: "Walmart FY2025 Q4 Earnings Release", date: "February 20, 2025", metricsUsed: "Metrics 3 and 8 historical data", url: "https://stock.walmart.com/sec-filings/all-sec-filings/content/0000104169-25-000010/earningsreleasefy25q4.htm" },
+        { id: "S8", title: "Walmart FY2026 Q4 Earnings Release", date: "February 19, 2026", metricsUsed: "Metrics 3 and 8; advertising, eCommerce, comp growth, and expedited delivery", url: "https://www.sec.gov/Archives/edgar/data/104169/000010416926000032/earningsreleasefy26q4.htm" },
+        { id: "S9", title: "Walmart FY2026 Q4 Earnings Presentation", date: "February 19, 2026", metricsUsed: "Metric 8 Q4 U.S. comp contribution series and FY26 context", url: "https://stock.walmart.com/sec-filings/all-sec-filings/content/0000104169-26-000032/earningspresentationfy26.htm" }
+      ]
+    };
+
+    const charts = {};
+    const chartColors = { blue: "#0071ce", navy: "#041e42", teal: "#0f9888", yellow: "#ffc220", purple: "#7065f0", slate: "#8b9bb0", amber: "#f59e0b" };
+
+    function themeTextColor() { return document.documentElement.dataset.theme === "dark" ? "#dce7f4" : "#334155"; }
+    function themeGridColor() { return document.documentElement.dataset.theme === "dark" ? "rgba(174,191,212,.15)" : "rgba(100,116,139,.15)"; }
+    function baseChartOptions() {
+      const text = themeTextColor();
+      const grid = themeGridColor();
+      return {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: { duration: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 650, easing: "easeOutQuart" },
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { position: "bottom", labels: { color: text, boxWidth: 10, boxHeight: 10, padding: 13, usePointStyle: true, font: { size: 10, weight: "600" } } },
+          tooltip: { backgroundColor: document.documentElement.dataset.theme === "dark" ? "rgba(8,15,27,.96)" : "rgba(4,30,66,.95)", titleColor: "#fff", bodyColor: "#eaf4ff", padding: 11, cornerRadius: 9, displayColors: true }
+        },
+        scales: {
+          x: { ticks: { color: text, font: { size: 10, weight: "600" }, maxRotation: 0 }, grid: { display: false }, border: { display: false } },
+          y: { ticks: { color: text, font: { size: 10 } }, grid: { color: grid }, border: { display: false } }
+        }
+      };
+    }
+    function cloneBase() { return baseChartOptions(); }
+    function registerAnnotations() {
+      const plugin = window.ChartAnnotation || window.chartjsPluginAnnotation || window.ChartjsPluginAnnotation || window["chartjs-plugin-annotation"];
+      if (window.Chart && plugin) { Chart.register(plugin); return true; }
+      if (window.Chart && !plugin) {
+        const note = document.getElementById("dependencyNote");
+        if (note) note.hidden = false;
+        return false;
+      }
+      return false;
+    }
+    function makeCharts() {
+      if (!window.Chart) {
+        document.getElementById("chartLoadNotice").classList.add("visible");
+        return;
+      }
+      registerAnnotations();
+      const d = WALMART_DASHBOARD_DATA;
+      const make = (id, config) => { charts[id] = new Chart(document.getElementById(id), config); };
+
+      {
+        const o = cloneBase(); o.scales.x.stacked = true; o.scales.y.stacked = true; o.scales.y.min = 0; o.scales.y.max = 100;
+        o.scales.y.ticks.callback = v => v + "%"; o.scales.y.title = { display:true, text:"Share of total revenue", color:themeTextColor(), font:{size:10,weight:"600"} };
+        o.plugins.tooltip.callbacks = { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}%` };
+        make("chart1", { type:"bar", data:{ labels:d.annualLabels, datasets:[
+          { label:"eCommerce share", data:d.metrics[0].values, backgroundColor:"rgba(0,113,206,.85)", borderColor:chartColors.blue, borderWidth:1, borderRadius:5, stack:"mix" },
+          { label:"Stores & other share", data:d.metrics[0].storeAndOtherShare, backgroundColor:"rgba(148,163,184,.45)", borderColor:"rgba(148,163,184,.7)", borderWidth:1, borderRadius:5, stack:"mix" }
+        ]}, options:o });
+      }
+      {
+        const o = cloneBase(); o.scales.y.min = 0; o.scales.y.max = 30; o.scales.y.ticks.callback = v => "~" + v + "%";
+        o.plugins.tooltip.callbacks = { label:ctx => ` YoY growth: ~${ctx.parsed.y.toFixed(1)}%` };
+        o.plugins.annotation = { annotations: { fy24:{ type:"line", xMin:"FY2024", xMax:"FY2024", borderColor:chartColors.amber, borderWidth:2, borderDash:[5,4], label:{ display:true, content:["FY2024: ~12.2% → ~21.9%","Pickup & delivery adoption"], position:"start", backgroundColor:"rgba(255,194,32,.95)", color:"#4b3300", borderRadius:5, font:{size:9,weight:"bold"}, padding:5, yAdjust:8 } } } };
+        make("chart2", { type:"line", data:{ labels:d.annualLabels, datasets:[{ label:"Global eCommerce growth (~%)", data:d.metrics[1].values, borderColor:chartColors.teal, backgroundColor:"rgba(15,152,136,.14)", borderWidth:3, pointRadius:[5,8,5,6], pointHoverRadius:9, pointBackgroundColor:[chartColors.teal,chartColors.amber,chartColors.teal,chartColors.teal], pointBorderColor:"#ffffff", fill:true, tension:.25 }]}, options:o });
+      }
+      {
+        const o = cloneBase(); o.scales.y.min = 0; o.scales.y.max = 55; o.scales.y.ticks.callback = v => v + "%";
+        o.plugins.tooltip.callbacks = { label:ctx => ` Global advertising growth: ${d.metrics[2].displayValues[ctx.dataIndex]}${ctx.dataIndex===3 ? " (includes VIZIO)" : ""}` };
+        o.plugins.annotation = { annotations: { fy26:{ type:"line", xMin:"FY2026", xMax:"FY2026", borderColor:chartColors.amber, borderWidth:2, borderDash:[5,4], label:{ display:true, content:["FY2026: 27% → 46%","VIZIO adds acquisition growth"], position:"start", backgroundColor:"rgba(255,194,32,.95)", color:"#4b3300", borderRadius:5, font:{size:9,weight:"bold"}, padding:5, xAdjust:-28, yAdjust:7 } } } };
+        make("chart3", { type:"bar", data:{ labels:d.annualLabels, datasets:[{ label:"Global advertising growth (% YoY)", data:d.metrics[2].values, backgroundColor:["rgba(0,113,206,.78)","rgba(0,113,206,.78)","rgba(0,113,206,.78)","rgba(245,158,11,.88)"], borderColor:[chartColors.blue,chartColors.blue,chartColors.blue,"#b45309"], borderWidth:1.5, borderRadius:6 }]}, options:o });
+      }
+      {
+        const o = cloneBase(); o.scales.x.stacked = true; o.scales.y.stacked = true; o.scales.y.min = 0; o.scales.y.max = 8; o.scales.y.ticks.callback = v => "$"+v+"B";
+        o.plugins.tooltip.callbacks = { label:ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toFixed(3)}B` };
+        make("chart4", { type:"bar", data:{ labels:d.annualLabels, datasets:[
+          { type:"line", label:"Consolidated Membership & Other Income", data:d.metrics[3].values, borderColor:chartColors.navy, backgroundColor:chartColors.yellow, borderWidth:2.7, pointRadius:5, pointBackgroundColor:chartColors.yellow, pointBorderColor:chartColors.navy, tension:.2, yAxisID:"y", order:0 },
+          { type:"bar", label:"Disclosed membership fee revenue", data:d.denominators.disclosedMembershipFeeB, backgroundColor:"rgba(0,113,206,.83)", borderRadius:4, stack:"income", order:1 },
+          { type:"bar", label:"Other income component (residual)", data:d.denominators.otherIncomeComponentB, backgroundColor:"rgba(148,163,184,.65)", borderRadius:4, stack:"income", order:2 }
+        ]}, options:o });
+      }
+      {
+        const o = cloneBase(); o.scales.y.min = 0; o.scales.y.max = 30; o.scales.y.ticks.callback = v => "$"+v+"B"; o.scales.y.title = { display:true,text:"Capital expenditures ($B)",color:themeTextColor(),font:{size:10,weight:"600"} };
+        o.scales.y1 = { position:"right", min:0, max:5, grid:{ drawOnChartArea:false }, ticks:{ color:themeTextColor(), callback:v=>v.toFixed(1)+"%",font:{size:10} }, border:{display:false}, title:{display:true,text:"CapEx / revenue",color:themeTextColor(),font:{size:10,weight:"600"}} };
+        o.plugins.tooltip.callbacks = { label:ctx => ctx.dataset.yAxisID === "y1" ? ` CapEx / revenue: ${ctx.parsed.y.toFixed(2)}%` : ` CapEx: $${ctx.parsed.y.toFixed(3)}B` };
+        make("chart5", { type:"bar", data:{ labels:d.annualLabels, datasets:[
+          { type:"bar", label:"Capital expenditures ($B)", data:d.denominators.capexB, backgroundColor:"rgba(0,113,206,.67)", borderColor:chartColors.blue, borderWidth:1, borderRadius:5, yAxisID:"y", order:2 },
+          { type:"line", label:"CapEx as % of revenue", data:d.metrics[4].values, borderColor:chartColors.teal, backgroundColor:"rgba(15,152,136,.12)", borderWidth:3, pointRadius:5, pointBackgroundColor:chartColors.teal, tension:.25, yAxisID:"y1", order:1 }
+        ]}, options:o });
+      }
+      {
+        const o = cloneBase(); o.scales.y.min = 22.5; o.scales.y.max = 25; o.scales.y.ticks.callback = v => v.toFixed(1)+"%"; o.scales.y.title = { display:true,text:"% of consolidated net sales",color:themeTextColor(),font:{size:10,weight:"600"} };
+        o.plugins.tooltip.callbacks = { label:ctx => ` Gross Profit Rate: ${ctx.parsed.y.toFixed(1)}%` };
+        make("chart6", { type:"line", data:{ labels:d.annualLabels, datasets:[{ label:"Gross profit rate (%)", data:d.metrics[5].values, borderColor:chartColors.purple, backgroundColor:"rgba(112,101,240,.13)", borderWidth:3, pointRadius:5, pointHoverRadius:8, pointBackgroundColor:chartColors.purple, fill:true, tension:.25 }]}, options:o });
+      }
+      {
+        const o = cloneBase(); o.scales.y.min = 240; o.scales.y.max = 360; o.scales.y.ticks.callback = v => "~$"+v+"K"; o.scales.y.title = { display:true,text:"USD thousands per associate",color:themeTextColor(),font:{size:10,weight:"600"} };
+        o.plugins.tooltip.callbacks = { label:ctx => ` Revenue / associate: ~$${ctx.parsed.y}K` };
+        make("chart7", { type:"bar", data:{ labels:d.annualLabels, datasets:[{ label:"Revenue per associate (~$K)", data:d.metrics[6].values, backgroundColor:"rgba(112,101,240,.78)", borderColor:"#5048c6", borderWidth:1.5, borderRadius:6 }]}, options:o });
+      }
+      {
+        const o = cloneBase(); o.scales.y.min = 0; o.scales.y.max = 600; o.scales.y.ticks.callback = v => "~"+v+" bps"; o.scales.y.title = { display:true,text:"Basis points (100 bps = 1.0% comp)",color:themeTextColor(),font:{size:10,weight:"600"} };
+        o.plugins.tooltip.callbacks = { label:ctx => ` eCommerce comp contribution: ~${ctx.parsed.y} bps` };
+        o.plugins.annotation = { annotations: {
+          q4fy26:{ type:"line", xMin:"Q4 FY2026", xMax:"Q4 FY2026", borderColor:chartColors.amber, borderWidth:2, borderDash:[5,4], label:{ display:true, content:["Q4 FY26: ~290 → ~520 bps",">50% expedited delivery growth"], position:"start", backgroundColor:"rgba(255,194,32,.95)", color:"#4b3300", borderRadius:5, font:{size:9,weight:"bold"}, padding:5, xAdjust:-46, yAdjust:5 } },
+          totalComp:{ type:"line", yMin:d.denominators.totalUSCompQ4FY2026Bps, yMax:d.denominators.totalUSCompQ4FY2026Bps, borderColor:"#8b9bb0", borderWidth:1.5, borderDash:[3,3], label:{ display:true, content:"Total U.S. comp growth: 460 bps", position:"start", backgroundColor:"rgba(148,163,184,.9)", color:"#172033", font:{size:9,weight:"600"}, padding:4 } }
+        } };
+        make("chart8", { type:"line", data:{ labels:d.q4Labels, datasets:[
+          { label:"eCommerce contribution to U.S. comp sales (~bps)", data:d.metrics[7].values, borderColor:chartColors.teal, backgroundColor:"rgba(15,152,136,.14)", borderWidth:3, pointBackgroundColor:[chartColors.teal,chartColors.teal,chartColors.teal,chartColors.amber], pointBorderColor:["#fff","#fff","#fff","#92400e"], pointRadius:[5,5,5,8], pointHoverRadius:9, fill:true, tension:.25 }
+        ]}, options:o });
+      }
+    }
+
+    function formatCell(value) { return String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;"); }
+    function renderExecutiveInsights() {
+      const d = WALMART_DASHBOARD_DATA;
+      const ecommerce = d.metrics[0];
+      const grossRate = d.metrics[5];
+      const revenuePerAssociate = d.metrics[6];
+      const advertising = d.metrics[2];
+      const digitalComp = d.metrics[7];
+      const mixShift = (ecommerce.values[3] - ecommerce.values[0]).toFixed(2);
+      const marginBps = Math.round((grossRate.values[3] - grossRate.values[0]) * 100);
+      const productivityLift = (((revenuePerAssociate.values[3] - revenuePerAssociate.values[0]) / revenuePerAssociate.values[0]) * 100).toFixed(1);
+      const totalComp = d.denominators.totalUSCompQ4FY2026Bps;
+      const insights = [
+        { id:"01", tone:"", kicker:"Revenue mix", value:ecommerce.displayValues[3], title:"eCommerce share of total revenue", copy:`Up from ${ecommerce.displayValues[0]} in FY2023 — a +${mixShift} percentage-point mix shift across the four-year series.` },
+        { id:"02", tone:"teal", kicker:"Financial guardrails", value:grossRate.displayValues[3], title:"Gross profit rate in FY2026", copy:`Gross profit rate rose ${marginBps} bps; revenue per associate also increased ~${productivityLift}% to ${revenuePerAssociate.displayValues[3]}. These are directional guardrails, not causal estimates.` },
+        { id:"03", tone:"amber", kicker:"Monetization caveat", value:advertising.displayValues[3], title:"Global advertising growth in FY2026", copy:`Up from ${advertising.displayValues[2]} in FY2025, but the latest result includes acquired VIZIO advertising revenue and is not wholly organic growth.` },
+        { id:"04", tone:"purple", kicker:"U.S. digital demand", value:digitalComp.displayValues[3], title:"eCommerce contribution to Q4 comp sales", copy:`Exceeded total U.S. Q4 comparable-sales growth of ${totalComp} bps; other components offset part of digital's contribution.` }
+      ];
+      document.getElementById("executiveInsightGrid").innerHTML = insights.map(item => `
+        <article class="glass insight-card ${item.tone}">
+          <div class="insight-kicker"><span class="insight-index">${item.id}</span> ${formatCell(item.kicker)}</div>
+          <div class="insight-value">${formatCell(item.value)}</div>
+          <div class="insight-title">${formatCell(item.title)}</div>
+          <p class="insight-copy">${formatCell(item.copy)}</p>
+        </article>`).join("");
+    }
+    function renderSummary() {
+      const target = document.getElementById("kpiSummaryStrip");
+      target.innerHTML = WALMART_DASHBOARD_DATA.metrics.map((m, idx) => `
+        <article class="glass kpi-card ${m.type === "Leading" ? "leading" : "lagging"} ${m.hasInflection ? "inflection" : ""}" style="animation-delay:${Math.min(idx*35,245)}ms">
+          <div class="kpi-top"><span class="metric-id">KPI ${String(m.id).padStart(2,"0")}</span><span class="badge ${m.type.toLowerCase()}">${m.type}</span></div>
+          <div class="kpi-name">${formatCell(m.name.replace(/^\d+\. /,""))}</div>
+          <div class="kpi-values"><span class="kpi-current">${formatCell(m.displayValues[m.displayValues.length-1])}</span><span class="kpi-delta ${m.id === 3 ? "caveat" : m.id === 5 ? "neutral" : ""}">${formatCell(m.delta)}</span></div>
+          <div class="kpi-base"><span>Baseline: ${formatCell(m.displayValues[0])}</span><span>${m.id===8?"Q4 FY26":"FY26"}</span></div>
+        </article>`).join("");
+    }
+    function renderDataTable() {
+      document.getElementById("dataTableBody").innerHTML = WALMART_DASHBOARD_DATA.metrics.map(m => `
+        <tr>
+          <td class="metric-cell">${formatCell(m.name)}<span class="subcell">${formatCell(m.dimension)}</span></td>
+          <td><span class="badge ${m.type.toLowerCase()}">${m.type}</span></td>
+          <td class="numeric">${formatCell(m.displayValues[0])}<span class="subcell">${formatCell(m.periods[0])}</span></td>
+          <td class="numeric">${formatCell(m.displayValues[1])}<span class="subcell">${formatCell(m.periods[1])}</span></td>
+          <td class="numeric">${formatCell(m.displayValues[2])}<span class="subcell">${formatCell(m.periods[2])}</span></td>
+          <td class="numeric"><strong>${formatCell(m.displayValues[3])}</strong><span class="subcell">${formatCell(m.periods[3])}</span></td>
+          <td class="numeric"><strong>${formatCell(m.delta)}</strong></td>
+          <td style="min-width:290px">${formatCell(m.tableNote)}<span class="subcell">${formatCell(m.status)} · Sources: ${formatCell(m.sources)}</span></td>
+        </tr>`).join("");
+    }
+    function renderSources() {
+      document.getElementById("sourcesGrid").innerHTML = WALMART_DASHBOARD_DATA.sources.map(s => `
+        <article class="source-item"><span class="source-id">${formatCell(s.id)}</span><h4>${formatCell(s.title)}</h4><p><strong>Disclosure date:</strong> ${formatCell(s.date)}</p><p>${formatCell(s.metricsUsed)}</p><a href="${s.url}" target="_blank" rel="noopener noreferrer">Open source ↗</a></article>`).join("");
+    }
+    function renderInflectionTimeline() {
+      const d = WALMART_DASHBOARD_DATA;
+      const tones = { 2: "#0f9888", 3: "#d89000", 8: "#0071ce" };
+      document.getElementById("inflectionTimeline").innerHTML = d.inflections.map((item, index) => {
+        const metric = d.metrics.find(m => m.id === item.metricId);
+        return `<article class="timeline-item" style="--timeline-color:${tones[item.metricId] || "#0071ce"}">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-period">${formatCell(item.period)} · Inflection ${String(index + 1).padStart(2,"0")}</div>
+          <div class="timeline-change">${formatCell(item.change)}</div>
+          <h3 class="timeline-metric">${formatCell(metric ? metric.name.replace(/^\d+\. /,"") : `Metric ${item.metricId}`)}</h3>
+          <p class="timeline-cause">${formatCell(item.cause)}</p>
+          <span class="timeline-tag">Source metrics · ${formatCell(metric ? metric.sources : "see source register")}</span>
+        </article>`;
+      }).join("");
+    }
+    function renderDecisionQuestions() {
+      const d = WALMART_DASHBOARD_DATA;
+      const ecommerce = d.metrics.find(m => m.id === 1);
+      const ads = d.metrics.find(m => m.id === 3);
+      const capex = d.metrics.find(m => m.id === 5);
+      const margin = d.metrics.find(m => m.id === 6);
+      const productivity = d.metrics.find(m => m.id === 7);
+      const cards = [
+        { tone:"#d89000", kicker:"Growth quality", question:"How much of advertising growth is organic after separating the VIZIO contribution?", copy:"FY2026’s reported acceleration is strategically important, but the acquisition caveat means it should not be treated as a clean read of underlying ad-platform momentum.", evidence:`${ads.displayValues[2]} in FY2025 → ${ads.displayValues[3]} in FY2026 · Sources ${ads.sources}` },
+        { tone:"#0f9888", kicker:"Digital economics", question:"Can the business keep scaling digital demand while protecting overall margin?", copy:"Revenue mix is moving toward eCommerce, while gross profit rate is a useful guardrail—not proof that digital fulfillment itself is more profitable.", evidence:`eCommerce mix ${ecommerce.displayValues[0]} → ${ecommerce.displayValues[3]} · Gross profit ${margin.displayValues[0]} → ${margin.displayValues[3]}` },
+        { tone:"#7065f0", kicker:"Investment productivity", question:"What evidence links higher investment intensity to measurable productivity gains?", copy:"CapEx is a broad proxy that includes stores and supply chain assets; revenue per associate is directional and based on a rounded headcount, so neither isolates digital ROI.", evidence:`CapEx intensity ${capex.displayValues[3]} · Revenue per associate ${productivity.displayValues[3]}` }
+      ];
+      document.getElementById("decisionQuestions").innerHTML = cards.map((item,index) => `<article class="glass decision-card" style="--decision-color:${item.tone}">
+        <div class="decision-kicker">Leadership question 0${index+1} · ${formatCell(item.kicker)}</div>
+        <h3>${formatCell(item.question)}</h3><p>${formatCell(item.copy)}</p><span class="decision-evidence">${formatCell(item.evidence)}</span>
+      </article>`).join("");
+    }
+    let activeKpiFilter = "All";
+    function applyKpiFilters() {
+      const query = (document.getElementById("kpiSearch").value || "").trim().toLowerCase();
+      const cards = [...document.querySelectorAll("#chartGrid .chart-card")];
+      let count = 0;
+      cards.forEach(card => {
+        const typeMatch = activeKpiFilter === "All" || card.dataset.kpiType === activeKpiFilter;
+        const searchMatch = !query || `${card.textContent} ${card.dataset.kpiDimension || ""}`.toLowerCase().includes(query);
+        const visible = typeMatch && searchMatch;
+        card.classList.toggle("filtered-out", !visible);
+        if (visible) count++;
+      });
+      document.getElementById("chartFilterStatus").textContent = count === 8 ? "Showing all 8 metrics" : `Showing ${count} of 8 metrics`;
+      document.querySelectorAll("[data-filter]").forEach(button => button.setAttribute("aria-pressed",String(button.dataset.filter === activeKpiFilter)));
+      if (charts && Object.keys(charts).length) requestAnimationFrame(() => Object.values(charts).forEach(chart => chart && chart.resize()));
+    }
+    function toggleChartFocus(id, button) {
+      const card = document.querySelector(`#${id}`)?.closest(".chart-card");
+      if (!card) return;
+      const shouldExpand = !card.classList.contains("expanded");
+      document.querySelectorAll(".chart-card.expanded").forEach(other => {
+        other.classList.remove("expanded");
+        const otherButton = other.querySelector('[data-action="expand"]');
+        if (otherButton) { otherButton.textContent = "Focus"; otherButton.setAttribute("aria-pressed","false"); }
+      });
+      if (shouldExpand) {
+        card.classList.add("expanded");
+        button.textContent = "Collapse";
+        button.setAttribute("aria-pressed","true");
+        card.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+      } else {
+        card.classList.remove("expanded");
+        button.textContent = "Focus";
+        button.setAttribute("aria-pressed","false");
+      }
+      requestAnimationFrame(() => { if (charts[id]) charts[id].resize(); });
+    }
+    function exportChartImage(id) {
+      const chart = charts[id];
+      if (!chart) { document.getElementById("chartLoadNotice").classList.add("visible"); return; }
+      const link = document.createElement("a");
+      link.href = chart.toBase64Image("image/png", 1);
+      link.download = `walmart-${id}-FY2023-FY2026.png`;
+      document.body.appendChild(link); link.click(); link.remove();
+    }
+    function exportMetricCsv() {
+      const rows = [["Metric ID","Metric","Indicator type","Dimension","Period 1","Value 1","Period 2","Value 2","Period 3","Value 3","Most recent period","Most recent value","Change","Status","Sources","Comparability note"]];
+      WALMART_DASHBOARD_DATA.metrics.forEach(m => rows.push([
+        m.id, m.name, m.type, m.dimension, m.periods[0], m.displayValues[0], m.periods[1], m.displayValues[1],
+        m.periods[2], m.displayValues[2], m.periods[3], m.displayValues[3], m.delta, m.status, m.sources, m.tableNote
+      ]));
+      const csv = rows.map(row => row.map(value => `"${String(value ?? "").replace(/"/g, '""')}"`).join(",")).join("\r\n");
+      const blob = new Blob(["\uFEFF", csv], {type:"text/csv;charset=utf-8;"});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a"); link.href = url; link.download = "walmart-kpi-data-FY2023-FY2026.csv";
+      document.body.appendChild(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function activateTab(name) {
+      document.body.classList.remove("all-mode");
+      document.getElementById("showAllToggle").setAttribute("aria-pressed","false");
+      document.getElementById("showAllLabel").textContent = "Show all sections";
+      document.querySelectorAll("[data-panel]").forEach(panel => panel.hidden = panel.dataset.panel !== name);
+      document.querySelectorAll("[data-tab]").forEach(tab => {
+        const selected = tab.dataset.tab === name;
+        tab.setAttribute("aria-selected", String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+      });
+      const names = { dashboard:"Dashboard view · eight charts remain together for review", data:"Data view · source notes and caveats shown alongside time series", analysis:"Analysis view · KPI logic and interpretation", sources:"Sources view · nine linked disclosures and role descriptions" };
+      document.getElementById("viewHint").textContent = names[name];
+      if (name === "dashboard") requestAnimationFrame(() => Object.values(charts).forEach(ch => ch && ch.resize()));
+    }
+    function toggleAllSections() {
+      const isAll = document.body.classList.toggle("all-mode");
+      document.getElementById("showAllToggle").setAttribute("aria-pressed",String(isAll));
+      document.getElementById("showAllLabel").textContent = isAll ? "Show one section" : "Show all sections";
+      document.querySelectorAll("[data-panel]").forEach(panel => panel.hidden = !isAll && panel.dataset.panel !== "dashboard");
+      document.querySelectorAll("[data-tab]").forEach(tab => {
+        const selected = !isAll && tab.dataset.tab === "dashboard";
+        tab.setAttribute("aria-selected",String(selected)); tab.tabIndex = selected ? 0 : -1;
+      });
+      document.getElementById("viewHint").textContent = isAll ? "All sections visible · useful for review and printing" : "Dashboard view · eight charts remain together for review";
+      requestAnimationFrame(() => Object.values(charts).forEach(ch => ch && ch.resize()));
+    }
+    function toggleTheme() {
+      const dark = document.documentElement.dataset.theme !== "dark";
+      document.documentElement.dataset.theme = dark ? "dark" : "light";
+      document.getElementById("themeToggle").setAttribute("aria-pressed",String(dark));
+      document.getElementById("themeLabel").textContent = dark ? "Light mode" : "Dark mode";
+      Object.values(charts).forEach(chart => {
+        if (!chart) return;
+        const text = themeTextColor(), grid = themeGridColor();
+        if (chart.options.plugins.legend) chart.options.plugins.legend.labels.color = text;
+        for (const axis of Object.values(chart.options.scales || {})) {
+          if (axis.ticks) axis.ticks.color = text;
+          if (axis.grid && axis.grid.display !== false) axis.grid.color = grid;
+          if (axis.title) axis.title.color = text;
+        }
+        if (chart.options.plugins.tooltip) {
+          chart.options.plugins.tooltip.backgroundColor = dark ? "rgba(8,15,27,.96)" : "rgba(4,30,66,.95)";
+        }
+        chart.update("none");
+      });
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      renderExecutiveInsights(); renderSummary(); renderDataTable(); renderSources(); renderInflectionTimeline(); renderDecisionQuestions(); makeCharts();
+      document.querySelectorAll("[data-tab]").forEach(tab => tab.addEventListener("click", () => activateTab(tab.dataset.tab)));
+      document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+      document.getElementById("showAllToggle").addEventListener("click", toggleAllSections);
+      document.getElementById("printToggle").addEventListener("click", () => window.print());
+      document.getElementById("kpiSearch").addEventListener("input", applyKpiFilters);
+      document.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click", () => { activeKpiFilter = button.dataset.filter; applyKpiFilters(); }));
+      document.getElementById("resetKpiFilters").addEventListener("click", () => { activeKpiFilter = "All"; document.getElementById("kpiSearch").value = ""; applyKpiFilters(); });
+      document.getElementById("exportCsv").addEventListener("click", exportMetricCsv);
+      document.querySelectorAll("[data-action]").forEach(button => button.addEventListener("click", () => button.dataset.action === "expand" ? toggleChartFocus(button.dataset.chart, button) : exportChartImage(button.dataset.chart)));
+      const stickyToolbar = document.querySelector(".toolbar");
+      const readingProgressBar = document.getElementById("readingProgressBar");
+      const updateScrollChrome = () => {
+        stickyToolbar.classList.toggle("is-scrolled", window.scrollY > 260);
+        const range = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = range > 0 ? Math.max(0, Math.min(100, window.scrollY / range * 100)) : 0;
+        readingProgressBar.style.width = `${progress}%`;
+      };
+      window.addEventListener("scroll", updateScrollChrome, {passive:true});
+      window.addEventListener("resize", updateScrollChrome, {passive:true}); updateScrollChrome();
+      document.addEventListener("keydown", event => {
+        const active = document.activeElement;
+        const inField = active && ["INPUT","TEXTAREA","SELECT"].includes(active.tagName);
+        if (event.key === "/" && !inField && !event.ctrlKey && !event.metaKey && !event.altKey) {
+          event.preventDefault(); document.getElementById("kpiSearch").focus();
+        }
+        if (event.key === "Escape" && active === document.getElementById("kpiSearch") && active.value) {
+          active.value = ""; applyKpiFilters();
+        }
+      });
+      document.querySelector(".tabs").addEventListener("keydown", event => {
+        if (!["ArrowLeft","ArrowRight","Home","End"].includes(event.key)) return;
+        const tabs = [...document.querySelectorAll("[data-tab]")];
+        const current = tabs.findIndex(t => t.getAttribute("aria-selected") === "true");
+        let next = current;
+        if (event.key === "ArrowRight") next = (Math.max(current,0)+1)%tabs.length;
+        if (event.key === "ArrowLeft") next = (Math.max(current,0)-1+tabs.length)%tabs.length;
+        if (event.key === "Home") next = 0;
+        if (event.key === "End") next = tabs.length-1;
+        event.preventDefault(); tabs[next].focus(); activateTab(tabs[next].dataset.tab);
+      });
+    });
+  </script>
+</body>
+</html>

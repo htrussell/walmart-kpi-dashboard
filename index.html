@@ -378,7 +378,16 @@
       *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
       .chart-card { opacity:1; transform:none; }
     }
-  </style>
+    /* Force the first card to match all standard grid cards */
+    .chart-card.primary {
+      grid-column: auto !important;
+      border: 1px solid var(--border) !important;
+      box-shadow: var(--shadow) !important;
+    }
+    .chart-card.primary .chart-canvas {
+      height: 260px !important;
+    }
+    </style>
 </head>
 <body>
   <div class="reading-progress" aria-hidden="true"><span id="readingProgressBar"></span></div>

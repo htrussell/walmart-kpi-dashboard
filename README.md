@@ -10,11 +10,6 @@
 
 The dashboard is a **static, illustrative analysis**. Its data and calculation assumptions are embedded in the HTML file; it does not connect to Walmart's internal systems, a live reporting service, or an external data API. Values, estimates, interpretations, and attribution of causes should be checked against original disclosures before they are used outside this classroom demo.
 
-## Files
-
-- `walmart_kpi_dashboard.html` — the interactive dashboard, styles, chart configurations, hard-coded data, annotations, source register, and team section.
-- `README.MD` — this project overview and usage guide.
-
 ## Dashboard contents
 
 The dashboard is organized into four sections:
